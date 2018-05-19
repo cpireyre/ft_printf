@@ -6,7 +6,7 @@
 #    By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/18 09:44:26 by cpireyre          #+#    #+#              #
-#    Updated: 2018/05/18 14:22:18 by cpireyre         ###   ########.fr        #
+#    Updated: 2018/05/18 14:31:27 by cpireyre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ $(PARSE_PATH)%.o: $(PARSE_PATH)%.c
 OBJ			=	$(PARSE_OBJ)
 
 parse:	$(PARSE)
-	$(CC) $(CFLAGS) -o parse_test $(PARSE) -L./libft/ -lft
+	$(CC) $(CFLAGS) -o tests/parse_test.out $(PARSE) -L./libft/ -lft
 
 clean:
 	$(RM) $(PARSE)

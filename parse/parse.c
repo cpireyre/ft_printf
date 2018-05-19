@@ -6,13 +6,13 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 10:49:13 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/05/18 09:44:09 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/05/19 07:51:58 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static t_bool	is_flag(char c)
+static t_bool		is_flag(char c)
 {
 	return (c == '#' || 
 			c == '0' || 
@@ -21,10 +21,10 @@ static t_bool	is_flag(char c)
 			c == '+');
 }
 
-static int	get_flags(const char *spec)
+static t_byte	get_flags(const char *spec)
 {
-	size_t	i;
-	int		flags;
+	size_t				i;
+	t_byte		flags;
 
 	i = 0;
 	flags = 0;
@@ -45,10 +45,10 @@ static int	get_flags(const char *spec)
 	return (flags);
 }
 
-int		get_options(const char *spec)
+t_byte		get_options(const char *spec)
 {
-	int		options;
-	size_t	i;
+	t_byte		options;
+	size_t				i;
 
 	options = get_flags(spec);
 	i = 0;

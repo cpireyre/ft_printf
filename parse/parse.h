@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 10:57:36 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/05/18 14:18:54 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/05/19 07:52:03 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "libft.h"
 
-int		get_options(const char *spec);
+t_byte		get_options(const char *spec);
 
 #endif
