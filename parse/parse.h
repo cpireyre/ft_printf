@@ -17,12 +17,12 @@
 
 typedef struct		s_options
 {
-	t_byte		flags;
-	int			field_width;
-	int			precision;
-	t_byte		length_mod;
-}					t_options;
+	t_byte	flags;
+	int	field_width;
+	int	precision;
+	t_byte	length_mod;
+}			t_options;
 
-t_byte				get_options(const char *spec);
+t_byte			get_options(const char *spec);
 
 #endif

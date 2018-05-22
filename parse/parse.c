@@ -12,23 +12,14 @@
 
 #include "parse.h"
 
-static t_bool		is_flag(char c)
-{
-	return (c == '#' || 
-			c == '0' || 
-			c == '-' || 
-			c == ' ' || 
-			c == '+');
-}
-
 static t_byte	get_flags(const char *spec)
 {
-	size_t				i;
-	t_byte		flags;
+	size_t	i;
+	t_byte	flags;
 
 	i = 0;
 	flags = 0;
-	while (is_flag(spec[i]))
+	while (spec[i])
 	{
 		if (spec[i] == '#')
 			flags = flags | 1;
@@ -45,14 +36,10 @@ static t_byte	get_flags(const char *spec)
 	return (flags);
 }
 
-t_byte		get_options(const char *spec)
+t_options	get_options(const char *spec)
 {
-	t_byte		options;
-	size_t				i;
+	t_options	options;
 
-	options = get_flags(spec);
-	i = 0;
-	while (is_flag(spec[i]))
-		i++;
+	options.flags = get_flags(spec);
 	return (options);
 }
