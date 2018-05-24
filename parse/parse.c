@@ -54,6 +54,28 @@ static int	get_field_width(const char *spec)
 	return (ft_atoi(spec));
 }
 
+static t_byte	get_length_mod(const char *spec)
+{
+	size_t	i;
+	t_byte	length_mod;
+
+	i = 0;
+	length_mod = 0;
+	while (spec[i])
+	{
+		if (spec[i] == 'j')
+			length_mod = length_mod | 1;
+		else if (spec[i] == 'z')
+			length_mod = length_mod | 1 << 1;
+		else if (spec[i] == 'h')
+			length_mod = (length_mod & (1 << 2)) ? (length_mod | (1 << 3)) : (length_mod | (1 << 2));
+		else if (spec[i] == 'l')
+			length_mod = (length_mod & (1 << 2)) ? (length_mod | (1 << 3)) : (length_mod | (1 << 2));
+		i++;
+	}
+	return (length_mod);
+}
+
 t_options	get_options(const char *spec)
 {
 	t_options	options;
@@ -61,5 +83,6 @@ t_options	get_options(const char *spec)
 	options.flags = get_flags(spec);
 	options.field_width = get_field_width(spec);
 	options.precision = get_precision(spec);
+	options.length_mod = get_length_mod(spec);
 	return (options);
 }
