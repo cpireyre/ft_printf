@@ -49,7 +49,7 @@ static int	get_precision(const char *spec)
 
 static int	get_field_width(const char *spec)
 {
-	while (!ft_is_digit(*spec))
+	while (!ft_isdigit(*spec))
 		spec++;
 	return (ft_atoi(spec));
 }
