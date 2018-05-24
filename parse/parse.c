@@ -36,10 +36,30 @@ static t_byte	get_flags(const char *spec)
 	return (flags);
 }
 
+static int	get_precision(const char *spec)
+{
+	while (*spec)
+		spec++;
+	spec--;
+	while (*spec != '.')
+		spec--;
+	spec++;
+	return (ft_atoi(spec));
+}
+
+static int	get_field_width(const char *spec)
+{
+	while (!ft_is_digit(*spec))
+		spec++;
+	return (ft_atoi(spec));
+}
+
 t_options	get_options(const char *spec)
 {
 	t_options	options;
 
 	options.flags = get_flags(spec);
+	options.field_width = get_field_width(spec);
+	options.precision = get_precision(spec);
 	return (options);
 }
