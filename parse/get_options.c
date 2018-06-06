@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 10:49:13 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/05/19 07:51:58 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/06 07:41:56 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	get_precision(const char *spec)
 	while (*spec)
 		spec++;
 	spec--;
-	while (*spec != '.')
+	while (*spec != '.' && !ft_isdigit(*(spec + 1)))
 		spec--;
 	spec++;
 	return (ft_atoi(spec));
@@ -49,8 +49,12 @@ static int	get_precision(const char *spec)
 
 static int	get_field_width(const char *spec)
 {
-	while (!ft_isdigit(*spec))
+	while (!ft_isdigit(*spec) || *spec == '0')
+	{
+		if (*spec == '.')
+			return (1);
 		spec++;
+	}
 	return (ft_atoi(spec));
 }
 
@@ -70,7 +74,7 @@ static t_byte	get_length_mod(const char *spec)
 		else if (spec[i] == 'h')
 			length_mod = (length_mod & (1 << 2)) ? (length_mod | (1 << 3)) : (length_mod | (1 << 2));
 		else if (spec[i] == 'l')
-			length_mod = (length_mod & (1 << 2)) ? (length_mod | (1 << 3)) : (length_mod | (1 << 2));
+			length_mod = (length_mod & (1 << 4)) ? (length_mod | (1 << 5)) : (length_mod | (1 << 4));
 		i++;
 	}
 	return (length_mod);

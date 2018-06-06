@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 12:16:46 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/05/19 08:03:30 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/06 12:01:17 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,22 @@ void		print_options(t_options options)
 
 int		main(int argc, char **argv)
 {
-	t_byte		options;
+	t_options		options;
 
 	if (argc == 2)
 	{
-		options = get_options(argv[1]);
-		ft_print_options(options);
+		while (*argv[1])
+		{
+			while (*argv[1] && *argv[1] != '%')
+				argv[1]++;
+			if (*argv[1] && *argv[1] == '%')
+			{
+				options = get_options(argv[1]);
+				ft_putendl("\ncurrent option:");
+				print_options(options);
+			}
+			argv[1]++;
+		}
 	}
 	return (0);
 }
