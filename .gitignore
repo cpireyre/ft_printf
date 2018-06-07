@@ -48,3 +48,6 @@ Module.symvers
 Mkfile.old
 dkms.confe.o
 *.a
+
+# ctags
+tags
