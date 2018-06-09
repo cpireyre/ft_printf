@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 11:27:21 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/09 11:47:51 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/09 11:56:19 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,14 @@ char	*signed_dec(int arg, t_options options);
 t_byte	u_char(int arg, t_options options);
 
 /* o, u, x + X. unsigned int conversions. */
-char	*octal(t_uint arg, t_options options);
+char	*u_octal(t_uint arg, t_options options);
 char	*u_dec(t_uint arg, t_options options);
 char	*u_hex(t_uint arg, t_options options, t_bool case);
+
+/* D, O, U. long int conversions. */
+char	*l_signed_dec(long int arg, t_options options);
+char	*l_u_octal(long int arg, t_options options);
+char	*l_u_dec(long int arg, t_options options, t_bool case);
 
 /* s. const char * conversion. */
 char	*string(const char *arg, t_options options);
