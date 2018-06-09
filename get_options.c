@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 14:22:38 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/09 14:32:43 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/09 14:48:49 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ static t_byte		get_flags(const char *spec)
 	while (spec[i] && !ft_strchr(CONVERSIONS, spec[i]))
 	{
 		if (spec[i] == '#')
-			flags = flags | 1;
+			flags = flags | (FLAG_SHARP);
 		else if (spec[i] == '0')
-			flags = flags | 1 << 1;
+			flags = flags | (FLAG_ZERO);
 		else if (spec[i] == '-')
-			flags = flags | 1 << 2;
+			flags = flags | (FLAG_DASH);
 		else if (spec[i] == ' ')
-			flags = flags | 1 << 3;
+			flags = flags | (FLAG_SPACE);
 		else if (spec[i] == '+')
-			flags = flags | 1 << 4;
+			flags = flags | (FLAG_PLUS);
 		i++;
 	}
 	return (flags);
@@ -68,15 +68,15 @@ static t_byte		get_length_mod(const char *spec)
 	while (spec[i] && !ft_strchr(CONVERSIONS, spec[i]))
 	{
 		if (spec[i] == 'j')
-			length_mod = length_mod | 1;
+			length_mod = length_mod | (MOD_J);
 		else if (spec[i] == 'z')
-			length_mod = length_mod | 1 << 1;
+			length_mod = length_mod | (MOD_Z);
 		else if (spec[i] == 'h')
-			length_mod = (length_mod & (1 << 2)) ? \
-				(length_mod | (1 << 3)) : (length_mod | (1 << 2));
+			length_mod = (length_mod & (MOD_H)) ? \
+				(length_mod | (MOD_HH)) : (length_mod | (MOD_H));
 		else if (spec[i] == 'l')
-			length_mod = (length_mod & (1 << 4)) ? \
-				(length_mod | (1 << 5)) : (length_mod | (1 << 4));
+			length_mod = (length_mod & (MOD_L)) ? \
+				(length_mod | (MOD_LL)) : (length_mod | (MOD_L));
 		i++;
 	}
 	return (length_mod);
