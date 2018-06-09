@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   get_options.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/17 10:49:13 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/07 10:37:55 by cpireyre         ###   ########.fr       */
+/*   Created: 2018/06/09 14:22:38 by cpireyre          #+#    #+#             */
+/*   Updated: 2018/06/09 14:32:43 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "ft_printf.h"
 
 static t_byte		get_flags(const char *spec)
 {
@@ -19,7 +19,7 @@ static t_byte		get_flags(const char *spec)
 
 	i = 0;
 	flags = 0;
-	while (spec[i])
+	while (spec[i] && !ft_strchr(CONVERSIONS, spec[i]))
 	{
 		if (spec[i] == '#')
 			flags = flags | 1;
@@ -65,7 +65,7 @@ static t_byte		get_length_mod(const char *spec)
 
 	i = 0;
 	length_mod = 0;
-	while (spec[i])
+	while (spec[i] && !ft_strchr(CONVERSIONS, spec[i]))
 	{
 		if (spec[i] == 'j')
 			length_mod = length_mod | 1;

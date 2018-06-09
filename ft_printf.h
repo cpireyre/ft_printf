@@ -6,12 +6,12 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 10:57:36 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/09 14:24:54 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/09 14:21:17 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include "libft.h"
 
@@ -24,5 +24,7 @@ typedef struct		s_options
 	int		precision;
 	t_byte	length_mod;
 }					t_options;
+
+t_options			get_options(const char *spec);
 
 #endif
