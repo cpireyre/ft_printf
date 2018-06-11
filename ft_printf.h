@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 09:51:14 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/11 09:55:29 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/11 13:00:41 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct		s_printf
 	va_list		*ap;
 	t_options	options;
 	t_buffer	buffer;
+	size_t		written;
 }					t_printf;
 
 t_options			get_options(const char *spec);
