@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 11:27:21 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/11 08:01:43 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/11 08:19:31 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,27 @@
 # include "ft_printf.h"
 # include "wchar.h"
 
+typedef	struct	s_conv
+{
+	char	letter;
+	void	(*conversion)(t_printf *);
+}				t_conv;
+
 /*
 ** d + i, c. int conversions.
 */
 
-int		signed_dec(t_printf *arg);
-int		u_char(t_printf *arg);
+void			signed_dec(t_printf *arg);
+void			u_char(t_printf *arg);
 
 /*
  ** o, u, x, X. unsigned int conversions.
 */
 
-int		u_octal(t_printf *arg);
-int		u_dec(t_printf *arg);
-int		u_hex_low(t_printf *arg);
-int		u_hex_upp(t_printf *arg);
+void			u_octal(t_printf *arg);
+void			u_dec(t_printf *arg);
+void			u_hex_low(t_printf *arg);
+void			u_hex_upp(t_printf *arg);
 
 /*
 ** D, O, U. long int conversions.
@@ -38,27 +44,43 @@ int		u_hex_upp(t_printf *arg);
 ** arg to long int and calling the following functions. Maybe.
 */
 
-int		l_signed_dec(t_printf *arg);
-int		l_u_octal(t_printf *arg);
-int		l_u_dec(t_printf *arg);
+void			l_signed_dec(t_printf *arg);
+void			l_u_octal(t_printf *arg);
+void			l_u_dec(t_printf *arg);
 
 /*
 **  s. const char * conversion.
 */
 
-int		string(t_printf *arg);
+void			string(t_printf *arg);
 
 /*
 ** C, S. wint_t and wchar_t * conversions.
 */
 
-int		mb_char(t_printf *arg);
-int		mb_string(t_printf *arg);
+void			mb_char(t_printf *arg);
+void			mb_string(t_printf *arg);
 
 /*
 ** p. pointer conversion. similar to %#x.
 */
 
-int		ptr_addr(t_printf *arg);
+void			ptr_addr(t_printf *arg);
+
+static const	t_conv g_conversions[13] = {
+	(t_conv){'d', &signed_dec},
+	(t_conv){'i', &signed_dec},
+	(t_conv){'c', &u_char},
+	(t_conv){'o', &u_octal},
+	(t_conv){'u', &u_dec},
+	(t_conv){'x', &u_hex_low},
+	(t_conv){'X', &u_hex_upp},
+	(t_conv){'D', &l_signed_dec},
+	(t_conv){'O', &l_u_octal},
+	(t_conv){'U', &l_u_dec},
+	(t_conv){'s', &string},
+	(t_conv){'C', &mb_char},
+	(t_conv){'S', &mb_string}
+};
 
 #endif

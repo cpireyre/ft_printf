@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 10:57:36 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/11 08:04:56 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/11 08:21:51 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ typedef struct		s_options
 
 typedef struct		s_buffer
 {
-	char		tab[BUFF_SIZE];
-	size_t		index;
-	size_t		remaining;
+	char	tab[BUFF_SIZE];
+	size_t	index;
+	size_t	remaining;
 }					t_buffer;
 
 typedef struct		s_printf
