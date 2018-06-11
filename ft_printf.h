@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 10:57:36 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/11 08:21:51 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/11 08:37:32 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define FT_PRINTF_H
 
 # include "libft.h"
+# include "buffer.h"
 
-# define BUFF_SIZE		4096
 # define CONVERSIONS	"DdiOoUuXxCcSs"
 
 # define FLAG_SHARP (1)
@@ -38,13 +38,6 @@ typedef struct		s_options
 	int		precision;
 	t_byte	length_mod;
 }					t_options;
-
-typedef struct		s_buffer
-{
-	char	tab[BUFF_SIZE];
-	size_t	index;
-	size_t	remaining;
-}					t_buffer;
 
 typedef struct		s_printf
 {
