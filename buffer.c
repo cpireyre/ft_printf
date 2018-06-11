@@ -6,13 +6,13 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 08:23:20 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/11 08:59:07 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/11 09:02:51 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "buffer.h"
 
-void		flush_buffer(t_buffer *buf)
+void			flush_buffer(t_buffer *buf)
 {
 	if (buf->pos)
 	{

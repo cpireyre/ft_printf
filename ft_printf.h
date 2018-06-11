@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 10:57:36 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/11 08:37:32 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/11 09:03:58 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 # define FLAG_SPACE	(1 << 3)
 # define FLAG_PLUS	(1 << 4)
 
-# define MOD_J	(1)
-# define MOD_Z	(1 << 1)
-# define MOD_H	(1 << 2)
-# define MOD_HH	(1 << 3)
-# define MOD_L	(1 << 4)
-# define MOD_LL	(1 << 5)
+# define MOD_J		(1)
+# define MOD_Z		(1 << 1)
+# define MOD_H		(1 << 2)
+# define MOD_HH		(1 << 3)
+# define MOD_L		(1 << 4)
+# define MOD_LL		(1 << 5)
 
 typedef struct		s_options
 {
