@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 11:27:21 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/09 14:21:23 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/11 07:28:21 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@
 ** d + i, c. int conversions.
 */
 
-char	*signed_dec(int arg, t_options options);
-t_byte	u_char(int arg, t_options options);
+int		*signed_dec(int arg, t_options options);
+int		u_char(int arg, t_options options);
 
 /*
  ** o, u, x + X. unsigned int conversions.
 */
 
-char	*u_octal(t_uint arg, t_options options);
-char	*u_dec(t_uint arg, t_options options);
-char	*u_hex(t_uint arg, t_options options, t_bool upcase);
+int		*u_octal(t_uint arg, t_options options);
+int		*u_dec(t_uint arg, t_options options);
+int		*u_hex(t_uint arg, t_options options, t_bool upcase);
 
 /*
 ** D, O, U. long int conversions.
@@ -37,27 +37,27 @@ char	*u_hex(t_uint arg, t_options options, t_bool upcase);
 ** arg to long int and calling the following functions. Maybe.
 */
 
-char	*l_signed_dec(long int arg, t_options options);
-char	*l_u_octal(long int arg, t_options options);
-char	*l_u_dec(long int arg, t_options options, t_bool upcase);
+int		*l_signed_dec(long int arg, t_options options);
+int		l_u_octal(long int arg, t_options options);
+int		*l_u_dec(long int arg, t_options options, t_bool upcase);
 
 /*
 **  s. const char * conversion.
 */
 
-char	*string(const char *arg, t_options options);
+int		*string(const char *arg, t_options options);
 
 /*
 ** C, S. wint_t and wchar_t * conversions.
 */
 
-char	*mb_char(wint_t arg, t_options options);
-char	*mb_string(const wchar_t *arg, t_options options);
+int		*mb_char(wint_t arg, t_options options);
+int		*mb_string(const wchar_t *arg, t_options options);
 
 /*
 ** p. pointer conversion. similar to %#x.
 */
 
-char	*ptr_addr(void *arg, t_options options);
+int		*ptr_addr(void *arg, t_options options);
 
 #endif
