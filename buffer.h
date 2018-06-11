@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 08:35:55 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/11 08:50:15 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/11 08:53:38 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef struct		s_buffer
 	size_t	pos;
 }					t_buffer;
 
-void				flush_buffer(t_buffer *buf, int fd);
-void				putchar_buffer(t_buffer *buf, char c, int fd);
-void				putstr_buffer(t_buffer *buf, char *str, int fd);
+void				flush_buffer(t_buffer *buf);
+void				putchar_buffer(t_buffer *buf, char c);
+void				putstr_buffer(t_buffer *buf, char *str);
 
 #endif
