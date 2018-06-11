@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 11:27:21 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/11 07:28:21 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/11 08:01:43 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,17 @@
 ** d + i, c. int conversions.
 */
 
-int		*signed_dec(int arg, t_options options);
-int		u_char(int arg, t_options options);
+int		signed_dec(t_printf *arg);
+int		u_char(t_printf *arg);
 
 /*
- ** o, u, x + X. unsigned int conversions.
+ ** o, u, x, X. unsigned int conversions.
 */
 
-int		*u_octal(t_uint arg, t_options options);
-int		*u_dec(t_uint arg, t_options options);
-int		*u_hex(t_uint arg, t_options options, t_bool upcase);
+int		u_octal(t_printf *arg);
+int		u_dec(t_printf *arg);
+int		u_hex_low(t_printf *arg);
+int		u_hex_upp(t_printf *arg);
 
 /*
 ** D, O, U. long int conversions.
@@ -37,27 +38,27 @@ int		*u_hex(t_uint arg, t_options options, t_bool upcase);
 ** arg to long int and calling the following functions. Maybe.
 */
 
-int		*l_signed_dec(long int arg, t_options options);
-int		l_u_octal(long int arg, t_options options);
-int		*l_u_dec(long int arg, t_options options, t_bool upcase);
+int		l_signed_dec(t_printf *arg);
+int		l_u_octal(t_printf *arg);
+int		l_u_dec(t_printf *arg);
 
 /*
 **  s. const char * conversion.
 */
 
-int		*string(const char *arg, t_options options);
+int		string(t_printf *arg);
 
 /*
 ** C, S. wint_t and wchar_t * conversions.
 */
 
-int		*mb_char(wint_t arg, t_options options);
-int		*mb_string(const wchar_t *arg, t_options options);
+int		mb_char(t_printf *arg);
+int		mb_string(t_printf *arg);
 
 /*
 ** p. pointer conversion. similar to %#x.
 */
 
-int		*ptr_addr(void *arg, t_options options);
+int		ptr_addr(t_printf *arg);
 
 #endif
