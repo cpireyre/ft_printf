@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 14:22:38 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/09 14:48:49 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/11 10:23:02 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,16 @@ static t_byte		get_flags(const char *spec)
 
 static int			get_precision(const char *spec)
 {
-	while (*spec)
-		spec++;
-	spec--;
-	while (*spec != '.' && !ft_isdigit(*(spec + 1)))
-		spec--;
-	spec++;
-	return (ft_atoi(spec));
+	size_t	i;
+
+	i = 0;
+	while (spec[i] && !ft_strchr(CONVERSIONS, spec[i]))
+	{
+		if (spec[i] == '.' && spec[i + 1])
+			return (ft_atoi(spec + i + 1));
+		i++;
+	}
+	return (0);
 }
 
 static int			get_field_width(const char *spec)
