@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 08:35:55 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/11 08:53:38 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/11 08:56:51 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct		s_buffer
 {
 	char	tab[BUFF_SIZE];
 	size_t	pos;
+	int		filedesc;
 }					t_buffer;
 
 void				flush_buffer(t_buffer *buf);
