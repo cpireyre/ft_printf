@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 08:23:20 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/11 09:02:51 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/11 10:03:27 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,10 @@ void			putstr_buffer(t_buffer *buf, char *str)
 		putchar_buffer(buf, *str);
 		str++;
 	}
+}
+
+void			init_buffer(t_buffer *buffer, int fd)
+{
+	buffer->pos = 0;
+	buffer->filedesc = fd;
 }

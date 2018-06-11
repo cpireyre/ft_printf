@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 08:41:30 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/11 08:58:42 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/11 10:04:11 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int		main(void)
 {
 	t_buffer	buf;
 
-	buf.pos = 0;
-	buf.filedesc = 1;
+	init_buffer(&buf, 1);
 	putchar_buffer(&buf, 0);
 	putstr_buffer(&buf, "this should be seamless or less");
 	flush_buffer(&buf);
