@@ -6,13 +6,13 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 14:22:38 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/11 10:23:02 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/12 08:26:02 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static t_byte		get_flags(const char *spec)
+t_byte		get_flags(const char *spec)
 {
 	size_t	i;
 	t_byte	flags;
@@ -36,7 +36,7 @@ static t_byte		get_flags(const char *spec)
 	return (flags);
 }
 
-static int			get_precision(const char *spec)
+int			get_precision(const char *spec)
 {
 	size_t	i;
 
@@ -50,7 +50,7 @@ static int			get_precision(const char *spec)
 	return (0);
 }
 
-static int			get_field_width(const char *spec)
+int			get_field_width(const char *spec)
 {
 	while (!ft_isdigit(*spec) || *spec == '0')
 	{
@@ -61,7 +61,7 @@ static int			get_field_width(const char *spec)
 	return (ft_atoi(spec));
 }
 
-static t_byte		get_length_mod(const char *spec)
+t_byte		get_length_mod(const char *spec)
 {
 	size_t	i;
 	t_byte	length_mod;

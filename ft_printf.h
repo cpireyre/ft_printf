@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 09:51:14 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/11 13:00:41 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/12 12:03:25 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@
 # include "buffer.h"
 # include <stdarg.h>
 
-# define CONVERSIONS	"DdiOoUuXxCcSs"
+# define DEBUG 1
 
-# define FLAG_SHARP 	(1)
+# define CONVERSIONS	"DdiOoUuXxCcSs"
+# define NBR_CONVERSIONS 14
+
+# define FLAG_DASH	 	(1)
 # define FLAG_ZERO		(1 << 1)
-# define FLAG_DASH		(1 << 2)
+# define FLAG_SHARP		(1 << 2)
 # define FLAG_SPACE		(1 << 3)
 # define FLAG_PLUS		(1 << 4)
 
@@ -49,5 +52,7 @@ typedef struct		s_printf
 }					t_printf;
 
 t_options			get_options(const char *spec);
+int					ft_printf(const char *format, ...);
+void 				(*get_conversion(const char arg))(t_printf *);
 
 #endif
