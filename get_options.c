@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 14:22:38 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/12 08:26:02 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/12 13:19:09 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_byte		get_length_mod(const char *spec)
 	return (length_mod);
 }
 
-t_options			get_options(const char *spec)
+t_options	get_options(const char *spec)
 {
 	t_options	options;
 

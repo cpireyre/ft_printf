@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 11:48:29 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/12 13:03:38 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/12 13:27:30 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	init_printf(t_printf *data, va_list *ap)
 int			convert(t_printf *data, const char *format)
 {
 	size_t	j;
-	void 	(*conv)(t_printf *);
+	void	(*conv)(t_printf *);
 
 	j = 1;
 	if (format[j] == '%')

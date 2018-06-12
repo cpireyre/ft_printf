@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 09:51:14 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/12 12:54:52 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/12 13:26:45 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct		s_printf
 }					t_printf;
 
 t_options			get_options(const char *spec);
-void 				(*get_conversion(const char arg))(t_printf *);
 int					ft_printf(const char *format, ...);
 
 #endif

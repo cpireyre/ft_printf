@@ -6,13 +6,13 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 11:39:25 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/12 12:33:52 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/12 13:24:07 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "conversions.h"
 
-void (*get_conversion(const char arg))(t_printf *)
+void	(*get_conversion(const char arg))(t_printf *)
 {
 	size_t	i;
 
@@ -92,4 +92,3 @@ void	ptr_addr(t_printf *arg)
 {
 	ft_putendl("conversion found: %p");
 }
-

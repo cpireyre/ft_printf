@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 11:27:21 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/12 12:18:55 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/12 13:26:09 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ static const	t_conv g_conversions[NBR_CONVERSIONS] = {
 	(t_conv){'S', &mb_string},
 	(t_conv){'p', &ptr_addr}
 };
+
+void	(*get_conversion(const char arg))(t_printf *)
 
 #endif
