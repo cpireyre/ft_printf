@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 09:51:14 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/12 12:03:25 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/12 12:39:05 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # define DEBUG 1
 
-# define CONVERSIONS	"DdiOoUuXxCcSs"
+# define CONVERSIONS	"DdiOoUuXxCcSsp"
 # define NBR_CONVERSIONS 14
 
 # define FLAG_DASH	 	(1)
@@ -48,7 +48,6 @@ typedef struct		s_printf
 	va_list		*ap;
 	t_options	options;
 	t_buffer	buffer;
-	size_t		written;
 }					t_printf;
 
 t_options			get_options(const char *spec);

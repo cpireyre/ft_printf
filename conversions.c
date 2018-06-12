@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 11:39:25 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/12 11:55:10 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/12 12:33:52 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,66 +30,66 @@ void (*get_conversion(const char arg))(t_printf *)
 
 void	signed_dec(t_printf *arg)
 {
-	ft_putendl("%d or %i");
+	ft_putendl("conversion found: %d or %i");
 }
 
 void	u_char(t_printf *arg)
 {
-	ft_putendl("%c");
+	ft_putendl("conversion found: %c");
 }
 
 void	u_octal(t_printf *arg)
 {
-	ft_putendl("%o");
+	ft_putendl("conversion found: %o");
 }
 
 void	u_dec(t_printf *arg)
 {
-	ft_putendl("%u");
+	ft_putendl("conversion found: %u");
 }
 
 void	u_hex_low(t_printf *arg)
 {
-	ft_putendl("%x");
+	ft_putendl("conversion found: %x");
 }
 
 void	u_hex_upp(t_printf *arg)
 {
-	ft_putendl("%X");
+	ft_putendl("conversion found: %X");
 }
 
 void	l_signed_dec(t_printf *arg)
 {
-	ft_putendl("%D or %ld");
+	ft_putendl("conversion found: %D or %ld");
 }
 
 void	l_u_octal(t_printf *arg)
 {
-	ft_putendl("%O or %lo");
+	ft_putendl("conversion found: %O or %lo");
 }
 
 void	l_u_dec(t_printf *arg)
 {
-	ft_putendl("%U or %lu");
+	ft_putendl("conversion found: %U or %lu");
 }
 
 void	string(t_printf *arg)
 {
-	ft_putendl("%s");
+	ft_putendl("conversion found: %s");
 }
 
 void	mb_char(t_printf *arg)
 {
-	ft_putendl("%C or %lc");
+	ft_putendl("conversion found: %C or %lc");
 }
 
 void	mb_string(t_printf *arg)
 {
-	ft_putendl("%S or %ls");
+	ft_putendl("conversion found: %S or %ls");
 }
 
 void	ptr_addr(t_printf *arg)
 {
-	ft_putendl("%p");
+	ft_putendl("conversion found: %p");
 }
 

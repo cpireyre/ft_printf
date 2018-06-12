@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 08:23:20 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/11 10:03:27 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/12 12:40:41 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void			putchar_buffer(t_buffer *buf, char c)
 {
 	buf->tab[buf->pos] = c;
 	buf->pos++;
+	buf->written++;
 	if (buf->pos == BUFF_SIZE)
 		flush_buffer(buf);
 }

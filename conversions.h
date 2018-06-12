@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 11:27:21 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/12 12:03:10 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/12 12:18:55 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void			mb_string(t_printf *arg);
 /*
 ** p. pointer conversion. similar to %#x.
 */
-#include "ft_printf.h"
+
 void			ptr_addr(t_printf *arg);
 
 static const	t_conv g_conversions[NBR_CONVERSIONS] = {

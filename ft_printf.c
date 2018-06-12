@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 11:48:29 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/12 11:55:19 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/12 12:45:30 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,23 @@ static void	init_printf(t_printf *data, va_list *ap)
 	data->ap = ap;
 	data->buffer.pos = 0;
 	data->buffer.filedesc = 1;
-	data->written = 0;
+	data->buffer.written = 0;
 }
 
-static int	convert(t_printf *data, const char *format)
+int			convert(t_printf *data, const char *format)
 {
 	size_t	j;
+	void 	(*conv)(t_printf *);
 
 	j = 0;
 	while (format[j] && !ft_strchr(CONVERSIONS, format[j]))
 		j++;
 	if (j)
+	{
 		data->options = get_options(format + j);
+		conv = get_conversion(*(format + j));
+		conv(data);
+	}
 	return (j);
 }
 
@@ -46,11 +51,9 @@ int			ft_printf(const char *format, ...)
 		if (format[i] == '%')
 			i += convert(&data, format + i);
 		else
-		{
 			putchar_buffer(&data.buffer, format[i]);
-			data.written++;
-		}
 		i++;
 	}
-	return (data.written);
+	flush_buffer(&data.buffer);
+	return (data.buffer.written);
 }
