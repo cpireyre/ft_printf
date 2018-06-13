@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 08:23:20 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/12 12:40:41 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/13 12:22:18 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ void			putstr_buffer(t_buffer *buf, char *str)
 	{
 		putchar_buffer(buf, *str);
 		str++;
+	}
+}
+
+void			repeat_buffer(t_buffer *buf, char c, int num)
+{
+	while (num)
+	{
+		putchar_buffer(buf, c);
+		num--;
 	}
 }
 
