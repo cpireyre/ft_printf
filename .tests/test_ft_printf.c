@@ -6,20 +6,12 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 09:06:25 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/12 13:05:24 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/13 09:51:51 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
-
-void	ft_assert(t_bool condition)
-{
-	if (condition == true)
-		ft_putstr("\x1b[32m[OK]");
-	else
-		ft_putstr("\x1b[31m[error]");
-}
 
 int		main(void)
 {
