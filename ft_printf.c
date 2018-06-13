@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 11:48:29 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/12 13:29:39 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/13 12:15:52 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			convert(t_printf *data, const char *format)
 			j++;
 		if (j)
 		{
-			data->options = get_options(format + j);
+			data->options = get_options(format);
 			conv = get_conversion(*(format + j));
 			conv(data);
 		}
