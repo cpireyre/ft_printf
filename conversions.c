@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 11:39:25 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/12 13:24:07 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/13 11:16:49 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@ void	(*get_conversion(const char arg))(t_printf *)
 	if (DEBUG)
 		ft_putendl("Error: couldn't find conversion function.");
 	return (NULL);
-}
-
-void	signed_dec(t_printf *arg)
-{
-	ft_putendl("conversion found: %d or %i");
 }
 
 void	u_char(t_printf *arg)
