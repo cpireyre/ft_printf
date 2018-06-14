@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 10:13:37 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/14 10:14:29 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/14 11:36:39 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ void				flush_buf(t_buf *buf);
 void				putc_buf(t_buf *buf, char c);
 void				putstr_buf(t_buf *buf, char *str);
 void				repeat_buf(t_buf *buf, char c, int num);
-void				init_buf(t_buf *buf, int fd);
 
 #endif

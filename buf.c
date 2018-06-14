@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 10:13:29 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/14 10:13:33 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/14 11:36:05 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,4 @@ void			repeat_buf(t_buf *buf, char c, int num)
 		putc_buf(buf, c);
 		num--;
 	}
-}
-
-void			init_buf(t_buf *buf, int fd)
-{
-	buf->pos = 0;
-	buf->filedesc = fd;
 }
