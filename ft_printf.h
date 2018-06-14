@@ -6,11 +6,8 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 09:51:14 by cpireyre          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/06/14 11:25:03 by cpireyre         ###   ########.fr       */
-=======
+/*   Updated: 2018/06/14 13:30:43 by cpireyre         ###   ########.fr       */
 /*   Updated: 2018/06/14 11:16:06 by cpireyre         ###   ########.fr       */
->>>>>>> e68501b9d0225b653fb3d7b8125ff99ab30864b7
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +17,6 @@
 # include "libft.h"
 # include "buf.h"
 # include <stdarg.h>
-
-# define DEBUG 1
 
 # define CONVERSIONS	"DdiOoUuXxCcSsp"
 # define NBR_CONVERSIONS 14
@@ -59,5 +54,9 @@ typedef void		(*t_func)(t_printf *);
 t_op				get_op(const char *spec);
 t_func				get_conversion(const char arg);
 int					ft_printf(const char *format, ...);
+
+# define DEBUG 1
+
+void				print_op(t_printf arg);
 
 #endif
