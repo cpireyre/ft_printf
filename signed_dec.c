@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 11:16:02 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/14 09:28:55 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/14 09:33:17 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	do_flags(t_printf *a, int i)
 
 	digits = ft_count_digits_base(i, 10);
 	toprint = a->options.field_width - digits;
-	if ((i >= 0) && 
+	if ((i >= 0) &&
 		((a->options.flags & FLAG_PLUS) || (a->options.flags & FLAG_SPACE)))
 	{
 		putchar_buffer(&a->buffer, (a->options.flags & FLAG_PLUS) ? '+' : ' ');
