@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 09:51:14 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/13 11:26:08 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/14 10:29:16 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_PRINTF_H
 
 # include "libft.h"
-# include "buffer.h"
+# include "buf.h"
 # include <stdarg.h>
 
 # define DEBUG 1
@@ -35,22 +35,22 @@
 # define MOD_L			(1 << 4)
 # define MOD_LL			(1 << 5)
 
-typedef struct		s_options
+typedef struct		s_op
 {
-	t_byte	flags;
-	int		field_width;
-	int		precision;
+	t_byte	fl;
+	int		fw;
+	int		prec;
 	t_byte	length_mod;
-}					t_options;
+}					t_op;
 
 typedef struct		s_printf
 {
-	va_list		*ap;
-	t_options	options;
-	t_buffer	buffer;
+	va_list	*ap;
+	t_op	op;
+	t_buf	buf;
 }					t_printf;
 
-t_options			get_options(const char *spec);
+t_op				get_op(const char *spec);
 void				(*get_conversion(const char arg))(t_printf *);
 int					ft_printf(const char *format, ...);
 

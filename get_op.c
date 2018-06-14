@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_options.c                                      :+:      :+:    :+:   */
+/*   get_op.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/09 14:22:38 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/12 13:19:09 by cpireyre         ###   ########.fr       */
+/*   Created: 2018/06/14 10:14:15 by cpireyre          #+#    #+#             */
+/*   Updated: 2018/06/14 10:16:37 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_byte		get_flags(const char *spec)
+t_byte	get_fl(const char *spec)
 {
 	size_t	i;
-	t_byte	flags;
+	t_byte	fl;
 
 	i = 0;
-	flags = 0;
+	fl = 0;
 	while (spec[i] && !ft_strchr(CONVERSIONS, spec[i]))
 	{
 		if (spec[i] == '#')
-			flags = flags | (FLAG_SHARP);
+			fl = fl | (FLAG_SHARP);
 		else if (spec[i] == '0')
-			flags = flags | (FLAG_ZERO);
+			fl = fl | (FLAG_ZERO);
 		else if (spec[i] == '-')
-			flags = flags | (FLAG_DASH);
+			fl = fl | (FLAG_DASH);
 		else if (spec[i] == ' ')
-			flags = flags | (FLAG_SPACE);
+			fl = fl | (FLAG_SPACE);
 		else if (spec[i] == '+')
-			flags = flags | (FLAG_PLUS);
+			fl = fl | (FLAG_PLUS);
 		i++;
 	}
-	return (flags);
+	return (fl);
 }
 
-int			get_precision(const char *spec)
+int		get_prec(const char *spec)
 {
 	size_t	i;
 
@@ -50,7 +50,7 @@ int			get_precision(const char *spec)
 	return (0);
 }
 
-int			get_field_width(const char *spec)
+int		get_fw(const char *spec)
 {
 	while (!ft_isdigit(*spec) || *spec == '0')
 	{
@@ -61,7 +61,7 @@ int			get_field_width(const char *spec)
 	return (ft_atoi(spec));
 }
 
-t_byte		get_length_mod(const char *spec)
+t_byte	get_length_mod(const char *spec)
 {
 	size_t	i;
 	t_byte	length_mod;
@@ -85,13 +85,13 @@ t_byte		get_length_mod(const char *spec)
 	return (length_mod);
 }
 
-t_options	get_options(const char *spec)
+t_op	get_op(const char *spec)
 {
-	t_options	options;
+	t_op	op;
 
-	options.flags = get_flags(spec);
-	options.field_width = get_field_width(spec);
-	options.precision = get_precision(spec);
-	options.length_mod = get_length_mod(spec);
-	return (options);
+	op.fl = get_fl(spec);
+	op.fw = get_fw(spec);
+	op.prec = get_prec(spec);
+	op.length_mod = get_length_mod(spec);
+	return (op);
 }

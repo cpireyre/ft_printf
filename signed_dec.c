@@ -6,31 +6,28 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 11:16:02 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/14 09:33:17 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/14 10:11:42 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	do_flags(t_printf *a, int i)
+static void	do_fl(t_printf *a, int i)
 {
-	int		digits;
-	int		toprint;
+	size_t	to_pad;
+	t_bool	sign;
 
-	digits = ft_count_digits_base(i, 10);
-	toprint = a->options.field_width - digits;
-	if ((i >= 0) &&
-		((a->options.flags & FLAG_PLUS) || (a->options.flags & FLAG_SPACE)))
+	to_pad = a->op.fw - ft_count_digits_base(i, 10);
+	sign = (a->op.fl & FLAG_PLUS) || (a->op.fl & FLAG_SPACE);
+	if (a->op.fl & FLAG_ZERO)
 	{
-		putchar_buffer(&a->buffer, (a->options.flags & FLAG_PLUS) ? '+' : ' ');
-		toprint--;
+		if (sign)
+			putc_buf(&a->buf, (a->op.fl & FLAG_PLUS ? '+' : ' '));
+		repeat_buf(&a->buf, '0', to_pad - sign);
 	}
-	if (toprint > 0 && (a->options.flags & FLAG_ZERO)
-			&& !(a->options.flags & FLAG_DASH))
-		repeat_buffer(&a->buffer, '0', toprint);
 }
 
-void		itoa_buffer(int i, t_buffer *buffer)
+void		itoa_buf(int i, t_buf *buf)
 {
 	size_t	digits;
 	char	num[11];
@@ -38,19 +35,16 @@ void		itoa_buffer(int i, t_buffer *buffer)
 
 	ft_bzero(num, sizeof(char) * 11);
 	negative = (i < 0 ? true : false);
-	digits = negative + ft_count_digits_base(i, 10);
+	digits = ft_count_digits_base(i, 10);
 	if (negative == true)
-	{
-		num[0] = '-';
 		i *= -1;
-	}
 	while (digits - negative)
 	{
 		num[digits - 1] = ((i % 10) + '0');
 		i /= 10;
 		digits--;
 	}
-	putstr_buffer(buffer, num);
+	putstr_buf(buf, num);
 }
 
 void		signed_dec(t_printf *arg)
@@ -58,6 +52,6 @@ void		signed_dec(t_printf *arg)
 	int		i;
 
 	i = va_arg(*(arg->ap), int);
-	do_flags(arg, i);
-	itoa_buffer(i, &arg->buffer);
+	do_fl(arg, i);
+	itoa_buf(i, &arg->buf);
 }

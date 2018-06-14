@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 11:48:29 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/13 12:15:52 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/14 10:22:27 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static void	init_printf(t_printf *data, va_list *ap)
 {
 	data->ap = ap;
-	data->buffer.pos = 0;
-	data->buffer.filedesc = 1;
-	data->buffer.written = 0;
+	data->buf.pos = 0;
+	data->buf.filedesc = 1;
+	data->buf.written = 0;
 }
 
 int			convert(t_printf *data, const char *format)
@@ -27,14 +27,14 @@ int			convert(t_printf *data, const char *format)
 
 	j = 1;
 	if (format[j] == '%')
-		putchar_buffer(&data->buffer, '%');
+		putc_buf(&data->buf, '%');
 	else
 	{
 		while (format[j] && !ft_strchr(CONVERSIONS, format[j]))
 			j++;
 		if (j)
 		{
-			data->options = get_options(format);
+			data->op = get_op(format);
 			conv = get_conversion(*(format + j));
 			conv(data);
 		}
@@ -56,9 +56,9 @@ int			ft_printf(const char *format, ...)
 		if (format[i] == '%')
 			i += convert(&data, format + i);
 		else
-			putchar_buffer(&data.buffer, format[i]);
+			putc_buf(&data.buf, format[i]);
 		i++;
 	}
-	flush_buffer(&data.buffer);
-	return (data.buffer.written);
+	flush_buf(&data.buf);
+	return (data.buf.written);
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putbuffer.c                                        :+:      :+:    :+:   */
+/*   buf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/11 08:23:20 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/13 12:22:18 by cpireyre         ###   ########.fr       */
+/*   Created: 2018/06/14 10:13:29 by cpireyre          #+#    #+#             */
+/*   Updated: 2018/06/14 10:13:33 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "buffer.h"
+#include "buf.h"
 
-void			flush_buffer(t_buffer *buf)
+void			flush_buf(t_buf *buf)
 {
 	if (buf->pos)
 	{
@@ -21,35 +21,35 @@ void			flush_buffer(t_buffer *buf)
 	}
 }
 
-void			putchar_buffer(t_buffer *buf, char c)
+void			putc_buf(t_buf *buf, char c)
 {
 	buf->tab[buf->pos] = c;
 	buf->pos++;
 	buf->written++;
 	if (buf->pos == BUFF_SIZE)
-		flush_buffer(buf);
+		flush_buf(buf);
 }
 
-void			putstr_buffer(t_buffer *buf, char *str)
+void			putstr_buf(t_buf *buf, char *str)
 {
 	while (*str)
 	{
-		putchar_buffer(buf, *str);
+		putc_buf(buf, *str);
 		str++;
 	}
 }
 
-void			repeat_buffer(t_buffer *buf, char c, int num)
+void			repeat_buf(t_buf *buf, char c, int num)
 {
 	while (num)
 	{
-		putchar_buffer(buf, c);
+		putc_buf(buf, c);
 		num--;
 	}
 }
 
-void			init_buffer(t_buffer *buffer, int fd)
+void			init_buf(t_buf *buf, int fd)
 {
-	buffer->pos = 0;
-	buffer->filedesc = fd;
+	buf->pos = 0;
+	buf->filedesc = fd;
 }

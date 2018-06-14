@@ -6,28 +6,28 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 12:16:46 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/12 08:41:16 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/14 10:11:42 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_byte		get_flags(const char *spec);
-int			get_precision(const char *spec);
-int			get_field_width(const char *spec);
+t_byte		get_fl(const char *spec);
+int			get_prec(const char *spec);
+int			get_fw(const char *spec);
 t_byte		get_length_mod(const char *spec);
-t_options	get_options(const char *spec);
+t_op	get_op(const char *spec);
 
-void		print_options(t_options options)
+void		print_op(t_op op)
 {
-	ft_putstr("Flags: ");
-	ft_print_bits(options.flags);
+	ft_putstr("fl: ");
+	ft_print_bits(op.fl);
 	ft_putstr("\nField width: ");
-	ft_putnbr_endl(options.field_width);
-	ft_putstr("Precision: ");
-	ft_putnbr_endl(options.precision);
+	ft_putnbr_endl(op.fw);
+	ft_putstr("prec: ");
+	ft_putnbr_endl(op.prec);
 	ft_putstr("Length modifier: ");
-	ft_print_bits(options.length_mod);
+	ft_print_bits(op.length_mod);
 }
 
 void	ft_assert(t_bool bool)
@@ -40,21 +40,21 @@ void	ft_assert(t_bool bool)
 
 int		main(void)
 {
-	ft_putendl("Testing flags...");
-	ft_assert(get_flags("") == 0);
-	ft_assert(get_flags("+-0 #") == (FLAG_PLUS | FLAG_SPACE | FLAG_DASH
+	ft_putendl("Testing fl...");
+	ft_assert(get_fl("") == 0);
+	ft_assert(get_fl("+-0 #") == (FLAG_PLUS | FLAG_SPACE | FLAG_DASH
 				| FLAG_ZERO | FLAG_SHARP));
-	ft_assert(get_flags("+") == FLAG_PLUS);
+	ft_assert(get_fl("+") == FLAG_PLUS);
 
-	ft_putendl("\x1b[0m\nTesting precision...");
-	ft_assert(get_precision("") == 0);
-	ft_assert(get_precision("555") == 0);
-	ft_assert(get_precision(".555") == 555);
-	ft_assert(get_precision("0") == 0);
-	ft_assert(get_precision(".0") == 0);
-	ft_assert(get_precision(".000001") == 1);
-	ft_assert(get_precision("  1337  +0-- .2001") == 2001);
-	ft_assert(get_precision("%//////////5555d %;;;;;;;.66S") == 0);
-	ft_assert(get_precision("%//////////5555 %;;;;;;;.66S") == 66);
+	ft_putendl("\x1b[0m\nTesting prec...");
+	ft_assert(get_prec("") == 0);
+	ft_assert(get_prec("555") == 0);
+	ft_assert(get_prec(".555") == 555);
+	ft_assert(get_prec("0") == 0);
+	ft_assert(get_prec(".0") == 0);
+	ft_assert(get_prec(".000001") == 1);
+	ft_assert(get_prec("  1337  +0-- .2001") == 2001);
+	ft_assert(get_prec("%//////////5555d %;;;;;;;.66S") == 0);
+	ft_assert(get_prec("%//////////5555 %;;;;;;;.66S") == 66);
 	return (0);
 }
