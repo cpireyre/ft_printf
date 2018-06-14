@@ -6,23 +6,18 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 11:53:13 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/12 12:04:12 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/14 11:17:15 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "conversions.h"
 
 int		main(void)
 {
 	t_printf	mess;
 	void 		(*conv)(t_printf *);
 
-	conv = get_conversion('d');
-	conv(&mess);
-	conv = get_conversion('o');
-	conv(&mess);
-	conv = get_conversion('i');
-	conv(&mess);
 	conv = get_conversion('c');
 	conv(&mess);
 	conv = get_conversion('u');
