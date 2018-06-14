@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 09:06:25 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/14 10:11:42 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/14 13:40:57 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,11 @@
 int		main(void)
 {
 	ft_putendl("Testing %d...");
-	ft_printf("4:%d\n", 4);
-	ft_printf("0:%d\n", 0);
-	ft_printf("-42:%d\n", -42);
-	ft_printf("2147483647:%d\n", 2147483647);
 	ft_printf("4 with prec, no 0:%0.7d\n", 4);
-	ft_printf("4 without prec, yes 0:%0d\n", 4);
+	ft_printf("4 without prec, yes 0:%09d\n", 4);
 	ft_printf("4 with dash, no 0:%0++-  #10i\n", 4);
 	ft_printf("4 without dash, yes 0:%0++  #10i\n", 4);
-	ft_printf("5, -5 with space:% d % i\n", 5, -5);
-	ft_printf("5, -5 without space:%d %i\n", 5, -5);
+	ft_printf("5, -5 with space:% 9d % 3i\n", 5, -5);
 	ft_printf("%+06d\n", -1337);
 	printf("%+06d\n", -1337);
 //

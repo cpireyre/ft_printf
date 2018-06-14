@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 10:14:15 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/14 10:16:37 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/14 13:07:37 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		get_fw(const char *spec)
 {
 	while (!ft_isdigit(*spec) || *spec == '0')
 	{
-		if (*spec == '.')
+		if (*spec == '.' || ft_strchr(CONVERSIONS, *spec))
 			return (1);
 		spec++;
 	}

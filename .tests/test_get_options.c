@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 12:16:46 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/14 10:11:42 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/14 13:31:05 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,6 @@ int			get_fw(const char *spec);
 t_byte		get_length_mod(const char *spec);
 t_op	get_op(const char *spec);
 
-void		print_op(t_op op)
-{
-	ft_putstr("fl: ");
-	ft_print_bits(op.fl);
-	ft_putstr("\nField width: ");
-	ft_putnbr_endl(op.fw);
-	ft_putstr("prec: ");
-	ft_putnbr_endl(op.prec);
-	ft_putstr("Length modifier: ");
-	ft_print_bits(op.length_mod);
-}
 
 void	ft_assert(t_bool bool)
 {
