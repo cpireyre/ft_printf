@@ -6,14 +6,14 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 11:16:02 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/16 10:35:24 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/16 10:45:43 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "inttypes.h"
 
-void		pad_left(t_printf *a, intmax_t i)
+void	pad_left(t_printf *a, intmax_t i)
 {
 	size_t	digits;
 	int		to_pad;
@@ -52,7 +52,7 @@ void	pad_right(t_printf *a, intmax_t i)
 		repeat_buf(&a->buf, ' ', to_pad);
 }
 
-void		itoa_buf(intmax_t i, t_buf *buf)
+void	itoa_buf(intmax_t i, t_buf *buf)
 {
 	size_t	digits;
 	char	num[32];
@@ -71,21 +71,21 @@ void		itoa_buf(intmax_t i, t_buf *buf)
 	putstr_buf(buf, num);
 }
 
-void		signed_dec(t_printf *arg)
+void	signed_dec(t_printf *arg)
 {
 	intmax_t	i;
 
-	if (arg->op.length_mod & MOD_J) 
+	if (arg->op.length_mod & MOD_J)
 		i = va_arg(*(arg->ap), intmax_t);
-	else if (arg->op.length_mod & MOD_Z) 
+	else if (arg->op.length_mod & MOD_Z)
 		i = va_arg(*(arg->ap), size_t);
-	else if (arg->op.length_mod & MOD_LL) 
+	else if (arg->op.length_mod & MOD_LL)
 		i = va_arg(*(arg->ap), long long int);
-	else if (arg->op.length_mod & MOD_L) 
+	else if (arg->op.length_mod & MOD_L)
 		i = va_arg(*(arg->ap), long int);
-	else if (arg->op.length_mod & MOD_HH) 
+	else if (arg->op.length_mod & MOD_HH)
 		i = (char)va_arg(*(arg->ap), int);
-	else if (arg->op.length_mod & MOD_H) 
+	else if (arg->op.length_mod & MOD_H)
 		i = (short int)va_arg(*(arg->ap), int);
 	else
 		i = va_arg(*(arg->ap), int);

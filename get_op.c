@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 10:14:15 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/14 13:07:37 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/16 10:44:01 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,18 @@ t_byte	get_fl(const char *spec)
 {
 	size_t	i;
 	t_byte	fl;
+	t_bool	ignore_zero;
 
 	i = 0;
 	fl = 0;
+	ignore_zero = 0;
 	while (spec[i] && !ft_strchr(CONVERSIONS, spec[i]))
 	{
+		if (ft_iswithin(spec[i], '1', '9'))
+			ignore_zero = true;
 		if (spec[i] == '#')
 			fl = fl | (FLAG_SHARP);
-		else if (spec[i] == '0')
+		else if (spec[i] == '0' && !ignore_zero)
 			fl = fl | (FLAG_ZERO);
 		else if (spec[i] == '-')
 			fl = fl | (FLAG_DASH);
