@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 08:15:57 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/16 09:11:36 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/16 09:21:53 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 
 int		main(void)
 {
-	printf("%06.4d\n", -12);
-	ft_printf("%06.4d\n", -12);
-	printf("%.4d\n", -12);
-	ft_printf("%.4d\n", -12);
+	ft_printf("%+-012.6i\n", 0);
+	printf("%+-012.6i\n", 0);
 	return (0);
 }

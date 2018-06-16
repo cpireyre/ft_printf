@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 11:16:02 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/16 09:18:58 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/16 09:23:06 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		pad_left(t_printf *a, int i)
 	sign = (a->op.fl & (FLAG_PLUS | FLAG_SPACE)) || (i < 0);
 	to_pad = a->op.fw - (ft_max(digits, a->op.prec) + sign);
 	diff = a->op.prec - digits;
-	if (!(a->op.fl & FLAG_ZERO) && (to_pad > 0))
+	if (!(a->op.fl & FLAG_DASH) && !(a->op.fl & FLAG_ZERO) && (to_pad > 0))
 		repeat_buf(&a->buf, ' ', to_pad);
 	if (i < 0)
 		putc_buf(&a->buf, '-');
