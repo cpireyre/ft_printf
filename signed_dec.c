@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 11:16:02 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/16 10:45:43 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/16 11:25:25 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	itoa_buf(intmax_t i, t_buf *buf)
 	char	num[32];
 	t_bool	negative;
 
-	ft_bzero(num, sizeof(char) * 11);
+	ft_bzero(num, sizeof(char) * 32);
 	digits = ft_count_digits_base(i, 10);
 	if (i < 0)
 		i = ~i + 1;
@@ -71,7 +71,7 @@ void	itoa_buf(intmax_t i, t_buf *buf)
 	putstr_buf(buf, num);
 }
 
-void	signed_dec(t_printf *arg)
+intmax_t	get_cast(t_printf *arg)
 {
 	intmax_t	i;
 
@@ -89,9 +89,23 @@ void	signed_dec(t_printf *arg)
 		i = (short int)va_arg(*(arg->ap), int);
 	else
 		i = va_arg(*(arg->ap), int);
+	return (i);
+}
+
+void	signed_dec(t_printf *arg)
+{
+	intmax_t	i;
+
+	i = get_cast(arg);
 	if ((arg->op.prec > 0) || (arg->op.fl & FLAG_DASH))
 		arg->op.fl &= (arg->op.fl & ~FLAG_ZERO);
 	pad_left(arg, i);
 	itoa_buf(i, &arg->buf);
 	pad_right(arg, i);
+}
+
+void	l_signed_dec(t_printf *arg)
+{
+	arg->op.length_mod |= MOD_L;
+	signed_dec(arg);
 }
