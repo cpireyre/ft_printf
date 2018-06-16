@@ -6,32 +6,48 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 11:16:02 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/14 13:53:15 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/16 09:18:58 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	do_fl(t_printf *a, int i, t_bool dash)
+void		pad_left(t_printf *a, int i)
 {
-	t_bool	sign;
+	size_t	digits;
 	int		to_pad;
+	t_bool	sign;
+	int		diff;
 
-	if (a->op.fl & FLAG_DASH)
-		a->op.fl &= (a->op.fl & ~FLAG_ZERO);
+	digits = ft_count_digits_base(i, 10);
 	sign = (a->op.fl & (FLAG_PLUS | FLAG_SPACE)) || (i < 0);
-	to_pad = a->op.fw - (ft_count_digits_base(i, 10) + sign);
-	if (!dash && to_pad > 0 && !(a->op.fl & (FLAG_ZERO | FLAG_DASH)))
-		repeat_buf(&a->buf, ' ', a->op.fw);
-	if (i < 0 && !dash)
+	to_pad = a->op.fw - (ft_max(digits, a->op.prec) + sign);
+	diff = a->op.prec - digits;
+	if (!(a->op.fl & FLAG_ZERO) && (to_pad > 0))
+		repeat_buf(&a->buf, ' ', to_pad);
+	if (i < 0)
 		putc_buf(&a->buf, '-');
-	else if (a->op.fl & FLAG_PLUS && !dash)
+	else if (a->op.fl & FLAG_PLUS)
 		putc_buf(&a->buf, '+');
-	else if (a->op.fl & FLAG_SPACE && !dash)
+	else if (a->op.fl & FLAG_SPACE)
 		putc_buf(&a->buf, ' ');
-	if ((to_pad > 0) && (a->op.fl & FLAG_ZERO) && !dash)
+	if ((to_pad > 0) && (a->op.fl & FLAG_ZERO))
 		repeat_buf(&a->buf, '0', to_pad);
-	if (dash && (a->op.fl & FLAG_DASH))
+	if (diff > 0)
+		repeat_buf(&a->buf, '0', diff);
+}
+
+void	pad_right(t_printf *a, int i)
+{
+	size_t	digits;
+	int		to_pad;
+	t_bool	sign;
+	int		diff;
+
+	digits = ft_count_digits_base(i, 10);
+	sign = (a->op.fl & (FLAG_PLUS | FLAG_SPACE)) || (i < 0);
+	to_pad = a->op.fw - (ft_max(digits, a->op.prec) + sign);
+	if ((to_pad > 0) && (a->op.fl & FLAG_DASH))
 		repeat_buf(&a->buf, ' ', to_pad);
 }
 
@@ -58,7 +74,9 @@ void		signed_dec(t_printf *arg)
 	int		i;
 
 	i = va_arg(*(arg->ap), int);
-	do_fl(arg, i, false);
+	if ((arg->op.prec > 0) || (arg->op.fl & FLAG_DASH))
+		arg->op.fl &= (arg->op.fl & ~FLAG_ZERO);
+	pad_left(arg, i);
 	itoa_buf(i, &arg->buf);
-	do_fl(arg, i, true);
+	pad_right(arg, i);
 }
