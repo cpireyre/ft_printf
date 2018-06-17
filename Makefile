@@ -6,7 +6,7 @@
 #    By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/18 09:44:26 by cpireyre          #+#    #+#              #
-#    Updated: 2018/06/16 09:42:42 by cpireyre         ###   ########.fr        #
+#    Updated: 2018/06/17 08:25:07 by cpireyre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,3 +30,6 @@ all:
 	gcc libft/*.c -c -Ilibft/ -I./
 	ar rc $(NAME) *.o libft/obj/*.o
 	ranlib $(NAME)
+
+clean:
+	rm *.o
