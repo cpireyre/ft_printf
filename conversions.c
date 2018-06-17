@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 11:39:25 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/16 10:52:46 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/17 08:21:51 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,6 @@ void	u_char(t_printf *arg)
 	ft_putendl("conversion found: %c");
 }
 
-void	u_octal(t_printf *arg)
-{
-	ft_putendl("conversion found: %o");
-}
-
-void	u_dec(t_printf *arg)
-{
-	ft_putendl("conversion found: %u");
-}
-
 void	u_hex_low(t_printf *arg)
 {
 	ft_putendl("conversion found: %x");
@@ -56,11 +46,6 @@ void	u_hex_upp(t_printf *arg)
 void	l_u_octal(t_printf *arg)
 {
 	ft_putendl("conversion found: %O or %lo");
-}
-
-void	l_u_dec(t_printf *arg)
-{
-	ft_putendl("conversion found: %U or %lu");
 }
 
 void	string(t_printf *arg)

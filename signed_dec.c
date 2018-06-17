@@ -6,72 +6,61 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 11:16:02 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/16 11:25:25 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/17 09:38:55 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "inttypes.h"
 
-void	pad_left(t_printf *a, intmax_t i)
+void			pad_left(t_printf *a, t_integer_data id)
 {
-	size_t	digits;
-	int		to_pad;
-	t_bool	sign;
-	int		diff;
-
-	digits = ft_count_digits_base(i, 10);
-	sign = (a->op.fl & (FLAG_PLUS | FLAG_SPACE)) || (i < 0);
-	to_pad = a->op.fw - (ft_max(digits, a->op.prec) + sign);
-	diff = a->op.prec - digits;
-	if (!(a->op.fl & FLAG_DASH) && !(a->op.fl & FLAG_ZERO) && (to_pad > 0))
-		repeat_buf(&a->buf, ' ', to_pad);
-	if (i < 0)
+	if (!(a->op.fl & FLAG_DASH) && !(a->op.fl & FLAG_ZERO) && (id.to_pad > 0))
+		repeat_buf(&a->buf, ' ', id.to_pad);
+	if (id.num < 0)
 		putc_buf(&a->buf, '-');
 	else if (a->op.fl & FLAG_PLUS)
 		putc_buf(&a->buf, '+');
 	else if (a->op.fl & FLAG_SPACE)
 		putc_buf(&a->buf, ' ');
-	if ((to_pad > 0) && (a->op.fl & FLAG_ZERO))
-		repeat_buf(&a->buf, '0', to_pad);
-	if (diff > 0)
-		repeat_buf(&a->buf, '0', diff);
+	if (id.num != 0 && (id.base == 8 || id.base == 16))
+	{
+		putc_buf(&a->buf, '0');
+		if (id.base == 16)
+			putc_buf(&a->buf, (a->conv == 'x') ? 'x' : 'X');
+	}
+	if ((id.to_pad > 0) && (a->op.fl & FLAG_ZERO))
+		repeat_buf(&a->buf, '0', id.to_pad);
+	if (id.diff_prec > 0)
+		repeat_buf(&a->buf, '0', id.diff_prec);
 }
 
-void	pad_right(t_printf *a, intmax_t i)
+void			pad_right(t_printf *a, t_integer_data id)
 {
-	size_t	digits;
-	int		to_pad;
-	t_bool	sign;
-	int		diff;
-
-	digits = ft_count_digits_base(i, 10);
-	sign = (a->op.fl & (FLAG_PLUS | FLAG_SPACE)) || (i < 0);
-	to_pad = a->op.fw - (ft_max(digits, a->op.prec) + sign);
-	if ((to_pad > 0) && (a->op.fl & FLAG_DASH))
-		repeat_buf(&a->buf, ' ', to_pad);
+	if ((id.to_pad > 0) && (a->op.fl & FLAG_DASH))
+		repeat_buf(&a->buf, ' ', id.to_pad);
 }
 
-void	itoa_buf(intmax_t i, t_buf *buf)
+void			itoa_buf(t_buf *buf, t_integer_data id)
 {
-	size_t	digits;
-	char	num[32];
+	char	number[256];
+	char	*basestr;
 	t_bool	negative;
 
-	ft_bzero(num, sizeof(char) * 32);
-	digits = ft_count_digits_base(i, 10);
-	if (i < 0)
-		i = ~i + 1;
-	while (digits)
+	ft_bzero(number, sizeof(char) * 256);
+	basestr = "0123456789abcdef";
+	if (id.num < 0)
+		id.num = ~id.num + 1;
+	while (id.digits)
 	{
-		num[digits - 1] = ((i % 10) + '0');
-		i /= 10;
-		digits--;
+		number[id.digits - 1] = basestr[(id.num % id.base)];
+		id.num /= id.base;
+		id.digits--;
 	}
-	putstr_buf(buf, num);
+	putstr_buf(buf, number);
 }
 
-intmax_t	get_cast(t_printf *arg)
+intmax_t		get_cast(t_printf *arg)
 {
 	intmax_t	i;
 
@@ -92,19 +81,47 @@ intmax_t	get_cast(t_printf *arg)
 	return (i);
 }
 
-void	signed_dec(t_printf *arg)
+char			get_base(char conv)
 {
-	intmax_t	i;
-
-	i = get_cast(arg);
-	if ((arg->op.prec > 0) || (arg->op.fl & FLAG_DASH))
-		arg->op.fl &= (arg->op.fl & ~FLAG_ZERO);
-	pad_left(arg, i);
-	itoa_buf(i, &arg->buf);
-	pad_right(arg, i);
+	if (conv == 'o' || conv == 'O')
+		return (8);
+	else if (conv == 'x' || conv == 'X')
+		return (16);
+	else
+		return (10);
 }
 
-void	l_signed_dec(t_printf *arg)
+t_integer_data	get_int_data(t_printf *a)
+{
+	t_integer_data	id;
+
+	id.num = get_cast(a);
+	id.base = get_base(a->conv);
+	id.digits = ft_count_digits_base(id.num, id.base);
+	id.display_sign = (a->op.fl & (FLAG_PLUS | FLAG_SPACE)) || (id.num < 0);
+	id.to_pad = a->op.fw - (ft_max(id.digits, a->op.prec) + id.display_sign);
+	id.diff_prec = a->op.prec - id.digits;
+	return (id);
+}
+
+void			integer_conversion(t_printf *a)
+{
+	t_integer_data	id;
+
+	if ((a->op.prec > 0) || (a->op.fl & FLAG_DASH))
+		a->op.fl &= (a->op.fl & ~FLAG_ZERO);
+	id = get_int_data(a);
+	pad_left(a, id);
+	itoa_buf(&a->buf, id);
+	pad_right(a, id);
+}
+
+void			signed_dec(t_printf *arg)
+{
+	integer_conversion(arg);
+}
+
+void			l_signed_dec(t_printf *arg)
 {
 	arg->op.length_mod |= MOD_L;
 	signed_dec(arg);
