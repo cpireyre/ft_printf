@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 10:45:00 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/17 09:17:37 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/18 09:35:02 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,6 @@ typedef struct		s_printf
 	t_buf		buf;
 	char		conv;
 }					t_printf;
-
-typedef struct		s_integer_data
-{
-	intmax_t	num;
-	int			digits;
-	int			to_pad;
-	t_bool		display_sign;
-	char		base;
-	int			diff_prec;
-}					t_integer_data;
 
 typedef void		(*t_func)(t_printf *);
 

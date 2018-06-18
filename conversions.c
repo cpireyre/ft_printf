@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 11:39:25 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/17 08:21:51 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/17 10:57:29 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,19 @@ void	(*get_conversion(const char arg))(t_printf *)
 	return (NULL);
 }
 
-void	u_char(t_printf *arg)
+void	u_dec(t_printf *arg)
 {
 	ft_putendl("conversion found: %c");
+}
+
+void	l_u_dec(t_printf *arg)
+{
+	ft_putendl("conversion found: %c");
+}
+
+void	u_char(t_printf *arg)
+{
+	ft_putendl("conversion found: %x");
 }
 
 void	u_hex_low(t_printf *arg)
