@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 11:16:02 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/18 09:46:52 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/18 10:17:40 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void			pad_left(t_printf *a, t_integer_data id)
 		putc_buf(&a->buf, '+');
 	else if (a->op.fl & FLAG_SPACE)
 		putc_buf(&a->buf, ' ');
-	if (id.alt && id.diff_prec < 1)
+	if (id.alt && (id.diff_prec < 1 || id.base == 16))
 	{
 		putc_buf(&a->buf, '0');
 		if (id.alt == 2)
@@ -107,4 +107,31 @@ void			l_signed_dec(t_printf *arg)
 void	u_octal(t_printf *arg)
 {
 	integer_conversion(arg);
+}
+
+void	l_u_octal(t_printf *arg)
+{
+	arg->op.length_mod |= MOD_L;
+	signed_dec(arg);
+}
+
+void	u_dec(t_printf *arg)
+{
+	integer_conversion(arg);
+}
+
+void	l_u_dec(t_printf *arg)
+{
+	arg->op.length_mod |= MOD_L;
+	signed_dec(arg);
+}
+
+void	u_hex_low(t_printf *arg)
+{
+	integer_conversion(arg);
+}
+
+void	u_hex_upp(t_printf *arg)
+{
+	signed_dec(arg);
 }
