@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 09:30:53 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/18 10:19:33 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/18 10:59:14 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_integer_data	get_int_data(t_printf *a)
 		|| (!(id.u) && id.num < 0);
 	id.diff_prec = a->op.prec - id.digits;
 	id.alt = ((a->op.fl & FLAG_SHARP) && ((id.u ? id.unum : id.num) != 0)) *
-			 ((id.base == 8 ? 1 : 0) + (id.base == 16 ? 2 : 0));
+		((id.base == 8 ? 1 : 0) + (id.base == 16 ? 2 : 0));
 	id.caps = a->conv == 'X';
 	id.to_pad = a->op.fw
 		- (ft_max(id.digits, a->op.prec) + id.display_sign +

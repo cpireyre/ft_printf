@@ -6,11 +6,14 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 09:29:22 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/18 09:45:34 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/18 11:00:14 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef INTEGER_CONVERSIONS_H
+# define INTEGER_CONVERSIONS_H
+
+# include "ft_printf.h"
 
 typedef struct		s_integer_data
 {
@@ -26,8 +29,10 @@ typedef struct		s_integer_data
 	t_bool		caps;
 }					t_integer_data;
 
-char			get_base(char conv);
-t_bool			get_signedness(char conv);
-t_integer_data	get_int_data(t_printf *a);
-intmax_t		get_cast(t_printf *arg);
-uintmax_t		get_unsigned_cast(t_printf *arg);
+char				get_base(char conv);
+t_bool				get_signedness(char conv);
+t_integer_data		get_int_data(t_printf *a);
+intmax_t			get_cast(t_printf *arg);
+uintmax_t			get_unsigned_cast(t_printf *arg);
+
+#endif

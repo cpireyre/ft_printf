@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signed_dec.c                                       :+:      :+:    :+:   */
+/*   print_int_conv.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/13 11:16:02 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/18 10:17:40 by cpireyre         ###   ########.fr       */
+/*   Created: 2018/06/18 11:03:22 by cpireyre          #+#    #+#             */
+/*   Updated: 2018/06/18 11:03:24 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,47 +91,4 @@ void			integer_conversion(t_printf *a)
 	else
 		itoa_buf(&a->buf, id);
 	pad_right(a, id);
-}
-
-void			signed_dec(t_printf *arg)
-{
-	integer_conversion(arg);
-}
-
-void			l_signed_dec(t_printf *arg)
-{
-	arg->op.length_mod |= MOD_L;
-	signed_dec(arg);
-}
-
-void	u_octal(t_printf *arg)
-{
-	integer_conversion(arg);
-}
-
-void	l_u_octal(t_printf *arg)
-{
-	arg->op.length_mod |= MOD_L;
-	signed_dec(arg);
-}
-
-void	u_dec(t_printf *arg)
-{
-	integer_conversion(arg);
-}
-
-void	l_u_dec(t_printf *arg)
-{
-	arg->op.length_mod |= MOD_L;
-	signed_dec(arg);
-}
-
-void	u_hex_low(t_printf *arg)
-{
-	integer_conversion(arg);
-}
-
-void	u_hex_upp(t_printf *arg)
-{
-	signed_dec(arg);
 }
