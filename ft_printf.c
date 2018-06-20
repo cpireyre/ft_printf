@@ -61,5 +61,5 @@ int			ft_printf(const char *format, ...)
 		i++;
 	}
 	flush_buf(&data.buf);
-	return (data.buf.written);
+	return (data.error == true ? -1 : data.buf.written);
 }

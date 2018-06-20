@@ -48,6 +48,7 @@ typedef struct		s_printf
 	t_op		op;
 	t_buf		buf;
 	char		conv;
+	t_bool		error;
 }					t_printf;
 
 typedef void		(*t_func)(t_printf *);

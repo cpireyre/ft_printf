@@ -3,7 +3,6 @@
 
 int	main(void)
 {
-	ft_printf("%-13.9s\n", "what the fuck is this dude");
-	printf("%-13.9s\n", "what the fuck is this dude");
+	ft_printf(0, 0);
 	return (0);
 }
