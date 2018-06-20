@@ -35,6 +35,8 @@ t_byte	get_fl(const char *spec)
 			fl = fl | (FLAG_SPACE);
 		else if (spec[i] == '+')
 			fl = fl | (FLAG_PLUS);
+		else if (spec[i] == '.')
+			fl = fl | (FLAG_PREC);
 		i++;
 	}
 	return (fl);

@@ -29,5 +29,6 @@ void				flush_buf(t_buf *buf);
 void				putc_buf(t_buf *buf, char c);
 void				putstr_buf(t_buf *buf, char *str);
 void				repeat_buf(t_buf *buf, char c, int num);
+void				putnstr_buf(t_buf *buf, char *str, int n);
 
 #endif

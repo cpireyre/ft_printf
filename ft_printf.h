@@ -25,6 +25,7 @@
 # define FLAG_SHARP		(1 << 2)
 # define FLAG_SPACE		(1 << 3)
 # define FLAG_PLUS		(1 << 4)
+# define FLAG_PREC		(1 << 5)
 
 # define MOD_J			(1)
 # define MOD_Z			(1 << 1)

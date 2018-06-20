@@ -38,6 +38,17 @@ void			putstr_buf(t_buf *buf, char *str)
 		str++;
 	}
 }
+void			putnstr_buf(t_buf *buf, char *str, int n)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] && i < n)
+	{
+		putc_buf(buf, str[i]);
+		i++;
+	}
+}
 
 void			repeat_buf(t_buf *buf, char c, int num)
 {

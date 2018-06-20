@@ -81,7 +81,19 @@ void	u_char(t_printf *arg)
 
 void	string(t_printf *arg)
 {
-	ft_putendl("conversion found: %s");
+	char	*str;
+	int	pad;
+
+	str = va_arg(*(arg->ap), char*);
+	pad = arg->op.fw - ft_min(ft_strlen(str), arg->op.prec);
+	if (pad > 0 && !(arg->op.fl & FLAG_DASH))
+		repeat_buf(&arg->buf, ' ', pad);
+	if (arg->op.fl & FLAG_PREC)
+		putnstr_buf(&arg->buf, str, arg->op.prec);
+	else
+		putstr_buf(&arg->buf, str);
+	if (pad > 0 && (arg->op.fl & FLAG_DASH))
+		repeat_buf(&arg->buf, ' ', pad);
 }
 
 void	mb_char(t_printf *arg)
