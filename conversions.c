@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 11:39:25 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/20 13:57:44 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/20 15:25:03 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,28 +52,16 @@ void	putc_buf_unicode(t_buf *buf, wchar_t uchar)
 	}
 }
 
-void	pad_left_text(t_printf *arg, int to_pad)
+void	pad_left_text(t_printf *arg)
 {
-	if ((arg->op.fw - to_pad) > 1 && !(arg->op.fl & FLAG_DASH))
-		repeat_buf(&arg->buf, ' ', arg->op.fw - to_pad - 1);
+	if (arg->op.fw > 1 && !(arg->op.fl & FLAG_DASH))
+		repeat_buf(&arg->buf, ' ', arg->op.fw - 1);
 }
 
-void	pad_right_text(t_printf *arg, int to_pad)
+void	pad_right_text(t_printf *arg)
 {
-	if ((arg->op.fw - to_pad) > 1 && (arg->op.fl & FLAG_DASH))
-		repeat_buf(&arg->buf, ' ', arg->op.fw - to_pad - 1);
-}
-
-int		get_to_pad(wchar_t uchar)
-{
-	if (uchar < 128)
-		return (0);
-	else if (uchar < 2048)
-		return (1);
-	else if (uchar < 1048576)
-		return (2);
-	else
-		return (3);
+	if (arg->op.fw > 1 && (arg->op.fl & FLAG_DASH))
+		repeat_buf(&arg->buf, ' ', arg->op.fw - 1);
 }
 
 void	u_char(t_printf *arg)
@@ -85,9 +73,9 @@ void	u_char(t_printf *arg)
 	else
 	{
 		c = (unsigned char)va_arg(*(arg->ap), int);
-		pad_left_text(arg, 1);
+		pad_left_text(arg);
 		putc_buf(&arg->buf, c);
-		pad_right_text(arg, 1);
+		pad_right_text(arg);
 	}
 }
 
@@ -99,13 +87,17 @@ void	string(t_printf *arg)
 void	mb_char(t_printf *arg)
 {
 	wchar_t		c;
-	int			to_pad;
 
 	c = va_arg(*(arg->ap), wchar_t);
-	to_pad = get_to_pad(c);
-	pad_left_text(arg, to_pad);
+	if (c < 2048)
+		arg->op.fw -= 1 * !(c < 127);
+	else if (c < 65536)
+		arg->op.fw -= 2;
+	else
+		arg->op.fw -= 3;
+	pad_left_text(arg);
 	putc_buf_unicode(&arg->buf, c);
-	pad_right_text(arg, to_pad);
+	pad_right_text(arg);
 }
 
 void	mb_string(t_printf *arg)
