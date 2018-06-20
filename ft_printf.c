@@ -52,7 +52,7 @@ int			ft_printf(const char *format, ...)
 	va_start(ap, format);
 	init_printf(&data, &ap);
 	i = 0;
-	while (format[i])
+	while (format && format[i])
 	{
 		if (format[i] == '%')
 			i += convert(&data, format + i);
