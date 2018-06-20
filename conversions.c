@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 11:39:25 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/20 11:04:10 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/20 13:57:44 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	putc_buf_unicode(t_buf *buf, wchar_t uchar)
 		putc_buf(buf, 0b11000000 | ((uchar >> 6) & 0b00011111));
 		putc_buf(buf, 0b10000000 | (uchar & 0b00111111));
 	}
-	else if (uchar < 1048576)
+	else if (uchar < 65536)
 	{
 		putc_buf(buf, 0b11100000 | ((uchar >> 12) & 0b00001111));
 		putc_buf(buf, 0b10000000 | ((uchar >> 6) & 0b00111111));
@@ -45,7 +45,7 @@ void	putc_buf_unicode(t_buf *buf, wchar_t uchar)
 	}
 	else
 	{
-		putc_buf(buf, 0b11110000 | ((uchar >> 15) & 0b00000111));
+		putc_buf(buf, 0b11110000 | ((uchar >> 18) & 0b00000111));
 		putc_buf(buf, 0b10000000 | ((uchar >> 12) & 0b00111111));
 		putc_buf(buf, 0b10000000 | ((uchar >> 6) & 0b00111111));
 		putc_buf(buf, 0b10000000 | (uchar & 0b00111111));
