@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 11:03:22 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/18 11:03:24 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/21 10:06:57 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ void			utoa_buf(t_buf *buf, t_integer_data id)
 void			pad_left(t_printf *a, t_integer_data id)
 {
 	if (!(a->op.fl & FLAG_DASH) && !(a->op.fl & FLAG_ZERO) && (id.to_pad > 0))
-		repeat_buf(&a->buf, ' ', id.to_pad);
+		repeat_buf(&a->buf, PAD, id.to_pad);
 	if (!(id.u) && id.num < 0)
 		putc_buf(&a->buf, '-');
 	else if (a->op.fl & FLAG_PLUS)
 		putc_buf(&a->buf, '+');
 	else if (a->op.fl & FLAG_SPACE)
-		putc_buf(&a->buf, ' ');
+		putc_buf(&a->buf, PAD);
 	if (id.alt && (id.diff_prec < 1 || id.base == 16))
 	{
 		putc_buf(&a->buf, '0');
@@ -75,7 +75,7 @@ void			pad_left(t_printf *a, t_integer_data id)
 void			pad_right(t_printf *a, t_integer_data id)
 {
 	if ((id.to_pad > 0) && (a->op.fl & FLAG_DASH))
-		repeat_buf(&a->buf, ' ', id.to_pad);
+		repeat_buf(&a->buf, PAD, id.to_pad);
 }
 
 void			integer_conversion(t_printf *a)

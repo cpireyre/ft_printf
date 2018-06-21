@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 10:45:00 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/18 09:35:02 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/21 10:07:57 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # define CONVERSIONS	"DdiOoUuXxCcSsp"
 # define NBR_CONVERSIONS 14
+# define PAD			' '
 
 # define FLAG_DASH	 	(1)
 # define FLAG_ZERO		(1 << 1)

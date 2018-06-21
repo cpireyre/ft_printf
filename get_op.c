@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 10:14:15 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/16 10:44:01 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/21 11:18:31 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_byte	get_fl(const char *spec)
 			fl = fl | (FLAG_ZERO);
 		else if (spec[i] == '-')
 			fl = fl | (FLAG_DASH);
-		else if (spec[i] == ' ')
+		else if (spec[i] == PAD)
 			fl = fl | (FLAG_SPACE);
 		else if (spec[i] == '+')
 			fl = fl | (FLAG_PLUS);
@@ -61,7 +61,7 @@ int		get_fw(const char *spec)
 	while (!ft_isdigit(*spec) || *spec == '0')
 	{
 		if (*spec == '.' || ft_strchr(CONVERSIONS, *spec))
-			return (1);
+			return (0);
 		spec++;
 	}
 	return (ft_atoi(spec));

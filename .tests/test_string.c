@@ -4,8 +4,9 @@
 
 int	main(void)
 {
+	wchar_t	*dreppamig = L"fuck meeee";
+
 	setlocale(LC_ALL, "");
-	ft_printf("!%38.12ls!\n", L"(╯°□°)╯︵ ┻━┻ ︵ ╯(°□° ╯)");
-	printf("!%38.12ls!\n", L"(╯°□°)╯︵ ┻━┻ ︵ ╯(°□° ╯)");
+	ft_putnbr_endl(printf("%C", 128150));
 	return (0);
 }

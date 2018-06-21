@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 11:39:25 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/21 09:02:40 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/21 11:58:40 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,61 @@ void	putstr_buf_unicode(t_buf *buf, wchar_t *ustr)
 	}
 }
 
+void	putnstr_buf_unicode(t_buf *buf, wchar_t *ustr, int n)
+{
+	int		i;
+
+	i = 0;
+	while (*ustr && i < n)
+	{
+		if (*ustr < 128)
+			i += 1;
+		else if (*ustr < 2048)
+			i += 2;
+		else if (*ustr < 65536)
+			i += 3;
+		else
+			i += 4;
+		if (i <= n)
+			putc_buf_unicode(buf, *ustr);
+		ustr++;
+	}
+}
+
+int		will_print_fuck(wchar_t *fuck, int prec)
+{
+	int		i;
+	int		umbrella;
+
+	i = 0;
+	umbrella = 0;
+	while (*fuck && i < prec)
+	{
+		if (*fuck < 128)
+			i += 1;
+		else if (*fuck < 2048)
+			i += 2;
+		else if (*fuck < 65536)
+			i += 3;
+		else
+			i += 4;
+		if (i > prec)
+			return (umbrella);
+		fuck++;
+		umbrella++;
+	}
+	return (umbrella);
+}
 void	pad_left_text(t_printf *arg)
 {
 	if (arg->op.fw > 1 && !(arg->op.fl & FLAG_DASH))
-		repeat_buf(&arg->buf, ' ', arg->op.fw - 1);
+		repeat_buf(&arg->buf, PAD, arg->op.fw - 1);
 }
 
 void	pad_right_text(t_printf *arg)
 {
 	if (arg->op.fw > 1 && (arg->op.fl & FLAG_DASH))
-		repeat_buf(&arg->buf, ' ', arg->op.fw - 1);
+		repeat_buf(&arg->buf, PAD, arg->op.fw - 1);
 }
 
 void	u_char(t_printf *arg)
@@ -101,15 +146,15 @@ void	string(t_printf *arg)
 	str = va_arg(*(arg->ap), char*);
 	if (!str)
 		str = "(null)";
-	pad = arg->op.fw - ft_min(ft_strlen(str), arg->op.prec);
+	pad = arg->op.fw - (arg->op.fl & FLAG_PREC ? ft_min(ft_strlen(str), arg->op.prec) : ft_strlen(str));
 	if (pad > 0 && !(arg->op.fl & FLAG_DASH))
-		repeat_buf(&arg->buf, ' ', pad);
+		repeat_buf(&arg->buf, PAD, pad);
 	if (arg->op.fl & FLAG_PREC)
 		putnstr_buf(&arg->buf, str, arg->op.prec);
 	else
 		putstr_buf(&arg->buf, str);
 	if (pad > 0 && (arg->op.fl & FLAG_DASH))
-		repeat_buf(&arg->buf, ' ', pad);
+		repeat_buf(&arg->buf, PAD, pad);
 }
 
 void	mb_char(t_printf *arg)
@@ -135,14 +180,14 @@ size_t	ft_strwlen(wchar_t *str)
 	len = 0;
 	while (*str)
 	{
-		if (*str < 128)
+//		if (*str < 128)
 			len += 1;
-		else if (*str < 2048)
-			len += 2;
-		else if (*str < 65536)
-			len += 3;
-		else
-			len += 4;
+//		else if (*str < 2048)
+//			len += 2;
+//		else if (*str < 65536)
+//			len += 3;
+//		else
+//			len += 4;
 		str++;
 	}
 	return (len);
@@ -156,12 +201,15 @@ void	mb_string(t_printf *arg)
 	str = va_arg(*(arg->ap), wchar_t*);
 	if (!str)
 		str = L"(null)";
-	pad = arg->op.fw - ((arg->op.fl & FLAG_PREC) ? ft_min(ft_strwlen(str), arg->op.prec) : ft_strwlen(str));
+	pad = arg->op.fw - ((arg->op.fl & FLAG_PREC) ? will_print_fuck(str, arg->op.prec) : ft_strwlen(str));
 	if (pad > 0 && !(arg->op.fl & FLAG_DASH))
-		repeat_buf(&arg->buf, ' ', pad);
-	putstr_buf_unicode(&arg->buf, str);
+		repeat_buf(&arg->buf, PAD, pad);
+	if (!(arg->op.fl & FLAG_PREC))
+		putstr_buf_unicode(&arg->buf, str);
+	else
+		putnstr_buf_unicode(&arg->buf, str, arg->op.prec);
 	if (pad > 0 && (arg->op.fl & FLAG_DASH))
-		repeat_buf(&arg->buf, ' ', pad);
+		repeat_buf(&arg->buf, PAD, pad);
 }
 
 void	ptr_addr(t_printf *arg)
