@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 11:39:25 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/20 15:25:03 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/21 09:02:40 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,15 @@ void	putc_buf_unicode(t_buf *buf, wchar_t uchar)
 	}
 }
 
+void	putstr_buf_unicode(t_buf *buf, wchar_t *ustr)
+{
+	while (*ustr)
+	{
+		putc_buf_unicode(buf, *ustr);
+		ustr++;
+	}
+}
+
 void	pad_left_text(t_printf *arg)
 {
 	if (arg->op.fw > 1 && !(arg->op.fl & FLAG_DASH))
@@ -82,9 +91,16 @@ void	u_char(t_printf *arg)
 void	string(t_printf *arg)
 {
 	char	*str;
-	int	pad;
+	int		pad;
 
+	if (arg->op.length_mod & MOD_L)
+	{
+		mb_string(arg);
+		return ;
+	}
 	str = va_arg(*(arg->ap), char*);
+	if (!str)
+		str = "(null)";
 	pad = arg->op.fw - ft_min(ft_strlen(str), arg->op.prec);
 	if (pad > 0 && !(arg->op.fl & FLAG_DASH))
 		repeat_buf(&arg->buf, ' ', pad);
@@ -112,9 +128,40 @@ void	mb_char(t_printf *arg)
 	pad_right_text(arg);
 }
 
+size_t	ft_strwlen(wchar_t *str)
+{
+	size_t	len;
+
+	len = 0;
+	while (*str)
+	{
+		if (*str < 128)
+			len += 1;
+		else if (*str < 2048)
+			len += 2;
+		else if (*str < 65536)
+			len += 3;
+		else
+			len += 4;
+		str++;
+	}
+	return (len);
+}
+
 void	mb_string(t_printf *arg)
 {
-	ft_putendl("conversion found: %S or %ls");
+	wchar_t	*str;
+	int		pad;
+
+	str = va_arg(*(arg->ap), wchar_t*);
+	if (!str)
+		str = L"(null)";
+	pad = arg->op.fw - ((arg->op.fl & FLAG_PREC) ? ft_min(ft_strwlen(str), arg->op.prec) : ft_strwlen(str));
+	if (pad > 0 && !(arg->op.fl & FLAG_DASH))
+		repeat_buf(&arg->buf, ' ', pad);
+	putstr_buf_unicode(&arg->buf, str);
+	if (pad > 0 && (arg->op.fl & FLAG_DASH))
+		repeat_buf(&arg->buf, ' ', pad);
 }
 
 void	ptr_addr(t_printf *arg)
