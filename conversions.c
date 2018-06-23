@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 11:39:25 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/23 09:04:56 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/23 09:48:00 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,8 @@ void	string(t_printf *arg)
 	str = va_arg(*(arg->ap), char*);
 	if (!str)
 		str = "(null)";
-	pad = arg->op.fw - (arg->op.fl & FLAG_PREC ? ft_min(ft_strlen(str), arg->op.prec) : ft_strlen(str));
+	pad = arg->op.fw - (arg->op.fl & FLAG_PREC ?
+			ft_min(ft_strlen(str), arg->op.prec) : ft_strlen(str));
 	if (pad > 0 && !(arg->op.fl & FLAG_DASH))
 		repeat_buf(&arg->buf, PAD, pad);
 	if (arg->op.fl & FLAG_PREC)
@@ -202,7 +203,9 @@ void	mb_string(t_printf *arg)
 	str = va_arg(*(arg->ap), wchar_t*);
 	if (!str)
 		str = L"(null)";
-	pad = arg->op.fw - ((arg->op.fl & FLAG_PREC) ? ft_min(will_print_fuck(str, arg->op.prec), ft_strwlen(str)) : ft_strwlen(str));
+	pad = arg->op.fw - ((arg->op.fl & FLAG_PREC) ?
+			ft_min(will_print_fuck(str, arg->op.prec), ft_strwlen(str))
+			: ft_strwlen(str));
 	if (pad > 0 && !(arg->op.fl & FLAG_DASH))
 		repeat_buf(&arg->buf, PAD, pad);
 	if (!(arg->op.fl & FLAG_PREC))
