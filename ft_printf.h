@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 10:45:00 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/21 10:07:57 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/23 10:10:39 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_op				get_op(const char *spec);
 t_func				get_conversion(const char arg);
 int					ft_printf(const char *format, ...);
 
-# define DEBUG 1
+# define DEBUG 0
 
 void				print_op(t_printf arg);
 

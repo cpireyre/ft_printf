@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 10:13:29 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/21 10:06:18 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/23 10:44:03 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void			putstr_buf(t_buf *buf, char *str)
 
 void			putnstr_buf(t_buf *buf, char *str, int n)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (str[i] && i < n)

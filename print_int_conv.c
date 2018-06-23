@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 11:03:22 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/23 09:39:08 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/23 10:44:20 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void			itoa_buf(t_buf *buf, t_integer_data id)
 {
 	char	number[256];
 	char	*basestr;
-	t_bool	negative;
 
 	ft_bzero(number, sizeof(char) * 256);
 	basestr = id.caps ? "0123456789ABCDEF" : "0123456789abcdef";
@@ -37,7 +36,6 @@ void			utoa_buf(t_buf *buf, t_integer_data id)
 {
 	char	number[256];
 	char	*basestr;
-	t_bool	negative;
 
 	ft_bzero(number, sizeof(char) * 256);
 	basestr = id.caps ? "0123456789ABCDEF" : "0123456789abcdef";
