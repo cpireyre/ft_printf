@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 11:39:25 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/23 08:29:58 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/23 09:04:56 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,9 +211,4 @@ void	mb_string(t_printf *arg)
 		putnstr_buf_unicode(&arg->buf, str, arg->op.prec);
 	if (pad > 0 && (arg->op.fl & FLAG_DASH))
 		repeat_buf(&arg->buf, PAD, pad);
-}
-
-void	ptr_addr(t_printf *arg)
-{
-	ft_putendl("conversion found: %p");
 }

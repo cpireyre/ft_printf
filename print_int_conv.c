@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 11:03:22 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/21 10:06:57 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/23 09:39:08 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ void			pad_left(t_printf *a, t_integer_data id)
 		putc_buf(&a->buf, '+');
 	else if (a->op.fl & FLAG_SPACE)
 		putc_buf(&a->buf, PAD);
-	if (id.alt && (id.diff_prec < 1 || id.base == 16))
+	if (a->conv == 'p' || (id.alt && (id.diff_prec < 1 || id.base == 16)))
 	{
 		putc_buf(&a->buf, '0');
-		if (id.alt == 2)
+		if (id.alt == 2 || a->conv == 'p')
 			putc_buf(&a->buf, (id.caps) ? 'X' : 'x');
 	}
 	if ((id.to_pad > 0) && (a->op.fl & FLAG_ZERO))
