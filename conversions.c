@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 11:39:25 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/21 11:58:40 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/23 08:29:58 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,30 +82,6 @@ void	putnstr_buf_unicode(t_buf *buf, wchar_t *ustr, int n)
 	}
 }
 
-int		will_print_fuck(wchar_t *fuck, int prec)
-{
-	int		i;
-	int		umbrella;
-
-	i = 0;
-	umbrella = 0;
-	while (*fuck && i < prec)
-	{
-		if (*fuck < 128)
-			i += 1;
-		else if (*fuck < 2048)
-			i += 2;
-		else if (*fuck < 65536)
-			i += 3;
-		else
-			i += 4;
-		if (i > prec)
-			return (umbrella);
-		fuck++;
-		umbrella++;
-	}
-	return (umbrella);
-}
 void	pad_left_text(t_printf *arg)
 {
 	if (arg->op.fw > 1 && !(arg->op.fl & FLAG_DASH))
@@ -180,17 +156,42 @@ size_t	ft_strwlen(wchar_t *str)
 	len = 0;
 	while (*str)
 	{
-//		if (*str < 128)
+		if (*str < 128)
 			len += 1;
-//		else if (*str < 2048)
-//			len += 2;
-//		else if (*str < 65536)
-//			len += 3;
-//		else
-//			len += 4;
+		else if (*str < 2048)
+			len += 2;
+		else if (*str < 65536)
+			len += 3;
+		else
+			len += 4;
 		str++;
 	}
 	return (len);
+}
+
+int		will_print_fuck(wchar_t *fuck, int prec)
+{
+	int		i;
+	int		umbrella;
+
+	umbrella = 0;
+	i = 0;
+	while (*fuck && i < prec)
+	{
+		umbrella = i;
+		if (*fuck < 128)
+			i += 1;
+		else if (*fuck < 2048)
+			i += 2;
+		else if (*fuck < 65536)
+			i += 3;
+		else
+			i += 4;
+		fuck++;
+		if (i > prec)
+			return (umbrella);
+	}
+	return (i);
 }
 
 void	mb_string(t_printf *arg)
@@ -201,7 +202,7 @@ void	mb_string(t_printf *arg)
 	str = va_arg(*(arg->ap), wchar_t*);
 	if (!str)
 		str = L"(null)";
-	pad = arg->op.fw - ((arg->op.fl & FLAG_PREC) ? will_print_fuck(str, arg->op.prec) : ft_strwlen(str));
+	pad = arg->op.fw - ((arg->op.fl & FLAG_PREC) ? ft_min(will_print_fuck(str, arg->op.prec), ft_strwlen(str)) : ft_strwlen(str));
 	if (pad > 0 && !(arg->op.fl & FLAG_DASH))
 		repeat_buf(&arg->buf, PAD, pad);
 	if (!(arg->op.fl & FLAG_PREC))

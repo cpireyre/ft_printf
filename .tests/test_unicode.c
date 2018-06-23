@@ -19,7 +19,8 @@ int		main(void)
 {
 	int	meme = 0;
 
-		ft_printf("%4lci\n", meme);
-		printf("%4lca\n", meme);
+	setlocale(LC_ALL, "");
+	ft_printf("><%8.8ls>------------<\n", L"最終的なフラッシュ");
+	printf("><%8.8ls>------------<\n", L"最終的なフラッシュ");
 	return (0);
 }
