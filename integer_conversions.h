@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 09:29:22 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/18 11:00:14 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/25 07:55:00 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ t_bool				get_signedness(char conv);
 t_integer_data		get_int_data(t_printf *a);
 intmax_t			get_cast(t_printf *arg);
 uintmax_t			get_unsigned_cast(t_printf *arg);
+t_byte				get_alt(t_integer_data id, t_printf *a);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 09:30:53 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/23 09:40:16 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/25 07:56:15 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,26 +78,19 @@ uintmax_t		get_unsigned_cast(t_printf *arg)
 	return (i);
 }
 
-t_integer_data	get_int_data(t_printf *a)
+t_byte			get_alt(t_integer_data id, t_printf *a)
 {
-	t_integer_data	id;
-
-	id.u = get_signedness(a->conv);
-	id.num = (id.u) ? 0 : get_cast(a);
-	id.unum = !(id.u) ? 0 : get_unsigned_cast(a);
-	id.base = get_base(a->conv);
-	id.digits = ft_count_digits_base((id.u ? id.unum : id.num), id.base);
-	id.display_sign = (a->op.fl & (FLAG_PLUS | FLAG_SPACE))
-		|| (!(id.u) && id.num < 0);
-	id.diff_prec = a->op.prec - id.digits;
 	if (a->conv == 'p')
-		id.alt = 2;
-	else
-		id.alt = ((a->op.fl & FLAG_SHARP) && ((id.u ? id.unum : id.num) != 0)) *
-		((id.base == 8 ? 1 : 0) + (id.base == 16 ? 2 : 0));
-	id.caps = a->conv == 'X';
-	id.to_pad = a->op.fw
-		- (ft_max(id.digits, a->op.prec) + id.display_sign +
-				((id.diff_prec <= 0 || id.base == 16) ? id.alt : 0));
-	return (id);
+		return (2);
+	else if (a->op.fl & FLAG_SHARP)
+	{
+		if ((id.u && id.unum) || (!id.u && id.num))
+		{
+			if (id.base == 8)
+				return (1);
+			else if (id.base == 16)
+				return (2);
+		}
+	}
+	return (0);
 }
