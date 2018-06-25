@@ -6,7 +6,7 @@
 /*   By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 07:54:13 by cpireyre          #+#    #+#             */
-/*   Updated: 2018/06/25 07:55:02 by cpireyre         ###   ########.fr       */
+/*   Updated: 2018/06/25 08:03:05 by cpireyre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ t_integer_data	get_int_data(t_printf *a)
 	id.num = (id.u) ? 0 : get_cast(a);
 	id.unum = !(id.u) ? 0 : get_unsigned_cast(a);
 	id.base = get_base(a->conv);
-	id.digits = ft_count_digits_base((id.u ? id.unum : id.num), id.base);
+	if (id.u)
+		id.digits = ft_count_digits_base_unsigned(id.unum, id.base);
+	else
+		id.digits = ft_count_digits_base(id.num, id.base);
 	id.display_sign = (a->op.fl & (FLAG_PLUS | FLAG_SPACE))
 		|| (!(id.u) && id.num < 0);
 	id.diff_prec = a->op.prec - id.digits;
