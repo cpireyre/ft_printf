@@ -6,7 +6,7 @@
 #    By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/18 09:44:26 by cpireyre          #+#    #+#              #
-#    Updated: 2018/06/29 09:47:09 by cpireyre         ###   ########.fr        #
+#    Updated: 2018/06/29 10:22:52 by cpireyre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,13 @@ OBJ			=	$(SRC_FILES:%.c=%.o)
 H_FILES		=	buf.h conversions.h ft_printf.h integer_conversions.h libft.h
 D_FILES		=	$(SRC_FILES:%.c=%.d)
 
-all: $(LIBFT) $(NAME)
+all: $(NAME)
 
-$(LIBFT):
-	$(MAKE) -C $(LIBDIR)
+force:
+	@true
+
+$(LIBFT): force
+	@$(MAKE) -C $(LIBDIR)
 
 $(NAME): $(LIBFT) $(OBJ) 
 	@echo "Compiling libftprintf."
@@ -54,4 +57,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all, clean, fclean, re, $(LIBFT)
+.PHONY: all, clean, fclean, re, force
