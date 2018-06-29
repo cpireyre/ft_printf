@@ -6,7 +6,7 @@
 #    By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/18 09:44:26 by cpireyre          #+#    #+#              #
-#    Updated: 2018/06/25 07:55:25 by cpireyre         ###   ########.fr        #
+#    Updated: 2018/06/29 09:47:09 by cpireyre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,22 +27,24 @@ SRC_FILES	=	buf.c buf_unicode.c cc.c conversions.c ddioo.c debug.c \
 				ft_printf.c get_op.c integer_conversions.c print_int_conv.c \
 				ss.c uuxx.c get_int_data.c
 OBJ			=	$(SRC_FILES:%.c=%.o)
+H_FILES		=	buf.h conversions.h ft_printf.h integer_conversions.h libft.h
+D_FILES		=	$(SRC_FILES:%.c=%.d)
+
+all: $(LIBFT) $(NAME)
+
+$(LIBFT):
+	$(MAKE) -C $(LIBDIR)
 
 $(NAME): $(LIBFT) $(OBJ) 
 	@echo "Compiling libftprintf."
 	@libtool -static -o $@ $^
 	@echo "Also done!"
 
-all: $(NAME)
-
-$(LIBFT):
-	make -C $(LIBDIR)
-
-%.o: %.c
+%.o: %.c $(H_FILES)
 	@$(CC) $(CFLAGS) $(BFLAGS) $@ $< $(INCLUDES)
 
 clean:
-	@$(RM) $(OBJ)
+	@$(RM) $(OBJ) $(D_FILES)
 	@echo "Removing object files."
 
 fclean: clean
@@ -52,4 +54,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all, clean, fclean, re
+.PHONY: all, clean, fclean, re, $(LIBFT)
