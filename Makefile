@@ -6,7 +6,7 @@
 #    By: cpireyre <cpireyre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/18 09:44:26 by cpireyre          #+#    #+#              #
-#    Updated: 2018/06/29 10:22:52 by cpireyre         ###   ########.fr        #
+#    Updated: 2018/07/19 11:29:30 by cpireyre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ force:
 	@true
 
 $(LIBFT): force
-	@$(MAKE) -C $(LIBDIR)
+	@$(MAKE) -C $(LIBDIR) > /dev/null
 
 $(NAME): $(LIBFT) $(OBJ) 
 	@echo "Compiling libftprintf."
